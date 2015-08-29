@@ -36,15 +36,8 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 		JMenuItem opCadastroImvel = new JMenuItem("Cadastro Im\u00F3vel");
 		menuCadatro.add(opCadastroImvel);
 		
-		JMenu menuLocador = new JMenu("Cadastro Cliente");
-		menuCadatro.add(menuLocador);
-		
-		JMenuItem opCadastroLocador = new JMenuItem("Cadastro Locador");
-		menuLocador.add(opCadastroLocador);
-		
-		JMenuItem opCadastroLocatario = new JMenuItem("Cadastro Locatario");
-		menuLocador.add(opCadastroLocatario);
-		opCadastroLocatario.setBackground(Color.RED);
+		JMenuItem opCadastroPessoa = new JMenuItem("Cadastro Pessoa");
+		menuCadatro.add(opCadastroPessoa);
 		
 		JMenu menuCadasatrarContrato = new JMenu("Cadasatrar Contrato");
 		menuCadatro.add(menuCadasatrarContrato);
@@ -64,14 +57,8 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 		JMenuItem opConsultaImvel = new JMenuItem("Consulta Im\u00F3vel");
 		menuConsulta.add(opConsultaImvel);
 		
-		JMenu menuConsultaConsulta = new JMenu("Consulta Cliente");
-		menuConsulta.add(menuConsultaConsulta);
-		
-		JMenuItem opConsultaLocador = new JMenuItem("Consulta Locador");
-		menuConsultaConsulta.add(opConsultaLocador);
-		
-		JMenuItem opConsultaLocatario = new JMenuItem("Consulta Locatario");
-		menuConsultaConsulta.add(opConsultaLocatario);
+		JMenuItem opConsultaPessoa = new JMenuItem("Consulta Pessoa");
+		menuConsulta.add(opConsultaPessoa);
 		
 		JMenuItem opConsultaVisitantes = new JMenuItem("Consulta Visitante");
 		menuConsulta.add(opConsultaVisitantes);
@@ -120,11 +107,8 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 		//cadastros
 		opCadastroImvel.addActionListener(this);
 		opCadastroImvel.setActionCommand("CAD_IMOVEL");
-		opCadastroLocador.addActionListener(this);
-		opCadastroLocador.setActionCommand("CAD_LOCADOR");
 		opPreCadastro.addActionListener(this);
 		opPreCadastro.setActionCommand("CAD_PRE");
-		opCadastroLocatario.addActionListener(this);
 		opCadasatrarContratoAdministrao.addActionListener(this);
 		opCadasatrarContratoLocao.addActionListener(this);
 		
@@ -141,15 +125,7 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 		opMovimentacaoContratoDeLocao.addActionListener(this);
 		opRelatorioContratos.addActionListener(this);
 		opRelatorioImveis.addActionListener(this);
-		
-		
-//		Relatorios
-		
-		opConsultaLocador.addActionListener(this);
 		opAlteracaoContratoLocaoAlteração.addActionListener(this);
-		
-		
-		opConsultaLocatario.addActionListener(this);
 		
 	}
 
@@ -165,7 +141,7 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 			cadastroimovel.setVisible(true);
 			break;
 		case "CAD_LOCADOR":
-			JFrmCadastroLocador cadastroLocador = new JFrmCadastroLocador();
+			JFrmCadastroPessoa cadastroLocador = new JFrmCadastroPessoa();
 			cadastroLocador.setVisible(true);
 			break;
 		case "CAD_PRE":

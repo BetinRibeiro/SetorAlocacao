@@ -56,46 +56,7 @@ public class JFrmPreCadastro extends JDialog implements ActionListener {
 	private JButton button_2;
 	private JButton button_3;
 	private JButton btnCadastrar;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {// com.jtattoo.plaf.luna.LunaLookAndFeel azulado simples
-					// com.jtattoo.plaf.smart.SmartLookAndFeel o padrão que eu
-					// usava muito
-					// com.jtattoo.plaf.hifi.HiFiLookAndFeel preto bem massa!!
-					// com.jtattoo.plaf.graphite.GraphiteLookAndFeel preto com
-					// detalhes marrons
-					// com.jtattoo.plaf.fast.FastLookAndFeel cinza basico
-					// com.jtattoo.plaf.aluminium.AluminiumLookAndFeel -
-					// com.jtattoo.plaf.acryl.AcrylLookAndFeel - um pouco
-					// transparente detalhes em preto, bonito
-					// com.jtattoo.plaf.bernstein.BernsteinLookAndFeel bonito
-					// detalhes em amarelo laranja
-					// com.jtattoo.plaf.mcwin.McWinLookAndFeel interface do
-					// MacOs
-					// com.jtattoo.plaf.mint.MintLookAndFeel basico cores cinsas
-					// padrao
-					// com.jtattoo.plaf.noire.NoireLookAndFeel preto com detalhe
-					// em laranja
-					// com.jtattoo.plaf.smart.SmartLookAndFeel tons em azul
-					// com.jtattoo.plaf.texture.TextureLookAndFeel banco gelo
-					// com detalhes em preto fosco muito massa
-//					Properties props = new Properties();
-//					props.put("logoString", "");  
-//					SmartLookAndFeel.setCurrentTheme(props);
-					
-					
-					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-					JFrmPreCadastro frame = new JFrmPreCadastro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					System.out.println("betin");
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.

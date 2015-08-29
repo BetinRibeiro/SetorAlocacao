@@ -88,7 +88,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 	public JFrmPrincipal() {
 		setTitle("Setor de Visitas e Loca\u00E7\u00E3o");
 		foto = new JLabel();
-		foto.setBounds(10, 422, 230, 137);
+		foto.setBounds(10, 414, 250, 145);
 		ImageIcon imagem = new ImageIcon(
 				Main.class.getResource("/Imagens/1288955.png"));
 		Image img = imagem.getImage().getScaledInstance(foto.getWidth(),
