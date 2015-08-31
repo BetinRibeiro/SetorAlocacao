@@ -1,8 +1,6 @@
 package Janela.Cadastro;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -17,19 +15,50 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.UIManager;
+
 
 
 public class JFrmCadastroImovel extends JDialog {
 
+	/**
+	 * 
+	 */
+	//ainda não sei exatamente para que ser isso, pesquisei por alto mais não entendi muito
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField txtLougradouro;
+	private JTextField txtBairro;
+	private JTextField txtCidade;
+	private JTextField txtCep;
+	private JTextField txtId;
+	private JTextField txtCodImovel;
+	private JTextField txtIdProprietario;
+	private JTextField txtNomeProprietario;
+	private JTextField txtNumeroEscritura;
+	private JTextField txtNomeCartorio;
+	private JTextField txtCidadeCartorio;
+	private JTextField txtInformacoesAlocacao;
+	/**
+	 * Launch the application.
+	 */
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 
+					UIManager
+							.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+					JFrmCadastroImovel frame = new JFrmCadastroImovel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					System.out.println("betin");
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 
 	/**
@@ -37,7 +66,7 @@ public class JFrmCadastroImovel extends JDialog {
 	 */
 	public JFrmCadastroImovel() {
 		setTitle("Cadastro de Im\u00F3vel");
-		setBounds(100, 100, 760, 475);
+		setBounds(100, 100, 770, 475);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -47,140 +76,228 @@ public class JFrmCadastroImovel extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(10, 11, 724, 381);
+		panel.setBounds(10, 11, 735, 381);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblCdigoDoImovel = new JLabel("C\u00F3digo do Imovel");
+		JLabel lblCdigoDoImovel = new JLabel("C\u00F3digo Imovel");
 		lblCdigoDoImovel.setBounds(10, 10, 130, 14);
 		panel.add(lblCdigoDoImovel);
 		
-		JLabel lblProprietario = new JLabel("Proprietario");
-		lblProprietario.setBounds(10, 55, 108, 14);
-		panel.add(lblProprietario);
+		txtId = new JTextField();
+		txtId.setEnabled(false);
+		txtId.setBounds(10, 25, 93, 20);
+		panel.add(txtId);
+		txtId.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(10, 254, 704, 107);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JLabel lblCdigoIdentificadorImovel = new JLabel("Identificador ");
+		lblCdigoIdentificadorImovel.setBounds(113, 10, 123, 14);
+		panel.add(lblCdigoIdentificadorImovel);
 		
-		JLabel lblRua = new JLabel("Rua e Numero");
-		lblRua.setBounds(10, 10, 93, 14);
-		panel_1.add(lblRua);
+		txtCodImovel = new JTextField();
+		txtCodImovel.setEnabled(false);
+		txtCodImovel.setColumns(10);
+		txtCodImovel.setBounds(113, 25, 99, 20);
+		panel.add(txtCodImovel);
 		
-		JLabel lblBairro = new JLabel("Bairro");
-		lblBairro.setBounds(10, 55, 46, 14);
-		panel_1.add(lblBairro);
+		txtIdProprietario = new JTextField();
+		txtIdProprietario.setEnabled(false);
+		txtIdProprietario.setColumns(10);
+		txtIdProprietario.setBounds(10, 115, 70, 20);
+		panel.add(txtIdProprietario);
+		
+		txtNomeProprietario = new JTextField();
+		txtNomeProprietario.setEnabled(false);
+		txtNomeProprietario.setColumns(10);
+		txtNomeProprietario.setBounds(90, 115, 312, 20);
+		panel.add(txtNomeProprietario);
+		
+		JLabel lblNomeDoProprietario = new JLabel("Nome do Proprietario");
+		lblNomeDoProprietario.setBounds(90, 100, 123, 14);
+		panel.add(lblNomeDoProprietario);
+		
+		JLabel lblCdigoDoProprietario = new JLabel("C\u00F3digo ");
+		lblCdigoDoProprietario.setBounds(10, 100, 68, 14);
+		panel.add(lblCdigoDoProprietario);
+		
+		txtNumeroEscritura = new JTextField();
+		txtNumeroEscritura.setEnabled(false);
+		txtNumeroEscritura.setColumns(10);
+		txtNumeroEscritura.setBounds(10, 70, 130, 20);
+		panel.add(txtNumeroEscritura);
+		
+		JLabel lblNumeroDaEscritura = new JLabel("Numero da Escritura");
+		lblNumeroDaEscritura.setBounds(10, 55, 130, 14);
+		panel.add(lblNumeroDaEscritura);
+		
+		txtNomeCartorio = new JTextField();
+		txtNomeCartorio.setEnabled(false);
+		txtNomeCartorio.setColumns(10);
+		txtNomeCartorio.setBounds(150, 71, 222, 20);
+		panel.add(txtNomeCartorio);
+		
+		JLabel lblNomeDoCartorio = new JLabel("Nome do Cartorio");
+		lblNomeDoCartorio.setBounds(150, 56, 130, 14);
+		panel.add(lblNomeDoCartorio);
+		
+		txtCidadeCartorio = new JTextField();
+		txtCidadeCartorio.setEnabled(false);
+		txtCidadeCartorio.setColumns(10);
+		txtCidadeCartorio.setBounds(382, 70, 255, 20);
+		panel.add(txtCidadeCartorio);
+		
+		JLabel lblCidadeDoCartorio = new JLabel("Cidade do Cartorio");
+		lblCidadeDoCartorio.setBounds(382, 55, 130, 14);
+		panel.add(lblCidadeDoCartorio);
+		
+		JComboBox boxUfCartorio = new JComboBox();
+		boxUfCartorio.setBounds(647, 70, 60, 20);
+		panel.add(boxUfCartorio);
+		boxUfCartorio.setEnabled(false);
+		
+		JLabel lblUf = new JLabel("UF cartorio");
+		lblUf.setBounds(647, 55, 78, 14);
+		panel.add(lblUf);
+		
+		txtLougradouro = new JTextField();
+		txtLougradouro.setBounds(10, 161, 392, 20);
+		panel.add(txtLougradouro);
+		txtLougradouro.setEnabled(false);
+		txtLougradouro.setColumns(10);
+		
+		JLabel lblRua = new JLabel("Lougradrouro e Numero");
+		lblRua.setBounds(10, 145, 226, 14);
+		panel.add(lblRua);
+		
+		txtCidade = new JTextField();
+		txtCidade.setBounds(10, 205, 210, 20);
+		panel.add(txtCidade);
+		txtCidade.setEnabled(false);
+		txtCidade.setColumns(10);
 		
 		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setBounds(390, 10, 46, 14);
-		panel_1.add(lblCidade);
-		
-		JLabel lblUf = new JLabel("UF");
-		lblUf.setBounds(610, 10, 46, 14);
-		panel_1.add(lblUf);
+		lblCidade.setBounds(10, 190, 46, 14);
+		panel.add(lblCidade);
 		
 		JLabel lblCep = new JLabel("CEP");
-		lblCep.setBounds(256, 55, 46, 14);
-		panel_1.add(lblCep);
+		lblCep.setBounds(242, 190, 46, 14);
+		panel.add(lblCep);
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setBounds(10, 25, 370, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtCep = new JTextField();
+		txtCep.setBounds(241, 205, 161, 20);
+		panel.add(txtCep);
+		txtCep.setEnabled(false);
+		txtCep.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setBounds(10, 70, 235, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		txtBairro = new JTextField();
+		txtBairro.setBounds(412, 160, 225, 20);
+		panel.add(txtBairro);
+		txtBairro.setEnabled(false);
+		txtBairro.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setBounds(390, 25, 210, 20);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
+		JLabel lblBairro = new JLabel("Bairro");
+		lblBairro.setBounds(412, 145, 46, 14);
+		panel.add(lblBairro);
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setBounds(255, 70, 86, 20);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
+		JComboBox boxUFEndereco = new JComboBox();
+		boxUFEndereco.setEnabled(false);
+		boxUFEndereco.setBounds(647, 160, 58, 20);
+		panel.add(boxUFEndereco);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setEnabled(false);
-		comboBox.setBounds(610, 25, 58, 20);
-		panel_1.add(comboBox);
+		JLabel lblUfEndereo = new JLabel("UF Endere\u00E7o");
+		lblUfEndereo.setBounds(647, 145, 78, 14);
+		panel.add(lblUfEndereo);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(411, 114, 89, 20);
+		panel.add(btnBuscar);
+		
+		JLabel lblSuites = new JLabel("Suites");
+		lblSuites.setBounds(552, 190, 60, 14);
+		panel.add(lblSuites);
+		
+		JLabel lblGaragens = new JLabel("Garagens");
+		lblGaragens.setBounds(482, 190, 60, 14);
+		panel.add(lblGaragens);
+		
+		JLabel lblComodos = new JLabel("C\u00F4modos");
+		lblComodos.setBounds(412, 190, 60, 14);
+		panel.add(lblComodos);
+		
+		JComboBox boxComodos = new JComboBox();
+		boxComodos.setEnabled(false);
+		boxComodos.setBounds(412, 205, 60, 20);
+		panel.add(boxComodos);
+		
+		JComboBox boxGaragens = new JComboBox();
+		boxGaragens.setEnabled(false);
+		boxGaragens.setBounds(482, 205, 60, 20);
+		panel.add(boxGaragens);
+		
+		JComboBox boxSuites = new JComboBox();
+		boxSuites.setEnabled(false);
+		boxSuites.setBounds(552, 205, 60, 20);
+		panel.add(boxSuites);
+		
+		JLabel lblBanheiros = new JLabel("Banheiros");
+		lblBanheiros.setBounds(622, 190, 60, 14);
+		panel.add(lblBanheiros);
+		
+		JComboBox boxBanheiros = new JComboBox();
+		boxBanheiros.setEnabled(false);
+		boxBanheiros.setBounds(622, 205, 60, 20);
+		panel.add(boxBanheiros);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 125, 704, 118);
+		scrollPane.setBounds(10, 245, 715, 125);
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
-		scrollPane.setViewportView(textArea);
+		JTextArea txtInformacoesComplementares = new JTextArea();
+		txtInformacoesComplementares.setText("Tamanho : m\u00B2\r\n\r\n\u00C1rea costruida: m\u00B2\r\n\r\n\r\n\r\n");
+		scrollPane.setViewportView(txtInformacoesComplementares);
+		
+		JLabel lblInformaesComplementares = new JLabel("Informa\u00E7\u00F5es Complementares");
+		lblInformaesComplementares.setBounds(10, 230, 173, 14);
+		panel.add(lblInformaesComplementares);
+		
+		JComboBox boxTipo = new JComboBox();
+		boxTipo.setEnabled(false);
+		boxTipo.setBounds(222, 25, 174, 20);
+		panel.add(boxTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(167, 10, 46, 14);
+		lblTipo.setBounds(222, 10, 60, 14);
 		panel.add(lblTipo);
 		
-		JLabel lblPontoForte = new JLabel("Ponto Forte");
-		lblPontoForte.setBounds(442, 55, 208, 14);
-		panel.add(lblPontoForte);
+		JComboBox boxFinalidade = new JComboBox();
+		boxFinalidade.setEnabled(false);
+		boxFinalidade.setBounds(406, 25, 198, 20);
+		panel.add(boxFinalidade);
 		
-		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
-		textField_4.setBounds(10, 25, 130, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		JLabel lblFinalizadade = new JLabel("Finalizadade");
+		lblFinalizadade.setBounds(406, 10, 106, 14);
+		panel.add(lblFinalizadade);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setEnabled(false);
-		comboBox_1.setBounds(167, 25, 263, 20);
-		panel.add(comboBox_1);
-		
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setBounds(10, 100, 69, 14);
-		panel.add(lblDescrio);
-		
-		textField_5 = new JTextField();
-		textField_5.setEnabled(false);
-		textField_5.setBounds(10, 70, 320, 20);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
-		
-		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setEnabled(false);
-		btnPesquisar.setBounds(341, 69, 89, 23);
-		panel.add(btnPesquisar);
-		
-		textField_6 = new JTextField();
-		textField_6.setEnabled(false);
-		textField_6.setBounds(440, 70, 274, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JCheckBox chckbxIndisponivel = new JCheckBox("Indisponivel");
-		chckbxIndisponivel.setEnabled(false);
-		chckbxIndisponivel.setBounds(442, 24, 97, 23);
-		panel.add(chckbxIndisponivel);
-		
-		JButton btnLiberar = new JButton("Liberar");
-		btnLiberar.setBounds(348, 403, 89, 23);
-		contentPane.add(btnLiberar);
+		JCheckBox chckbxDisponvel = new JCheckBox("Dispon\u00EDvel");
+		chckbxDisponvel.setBounds(610, 24, 97, 23);
+		panel.add(chckbxDisponvel);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(447, 403, 89, 23);
+		btnSalvar.setBounds(458, 403, 89, 23);
 		contentPane.add(btnSalvar);
 		
-		JButton btnDeletar = new JButton("Deletar");
-		btnDeletar.setBounds(546, 403, 89, 23);
-		contentPane.add(btnDeletar);
-		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setBounds(645, 403, 89, 23);
+		btnSair.setBounds(656, 403, 89, 23);
 		contentPane.add(btnSair);
+		
+		txtInformacoesAlocacao = new JTextField();
+		txtInformacoesAlocacao.setEnabled(false);
+		txtInformacoesAlocacao.setColumns(10);
+		txtInformacoesAlocacao.setBounds(10, 403, 438, 23);
+		contentPane.add(txtInformacoesAlocacao);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(557, 403, 89, 23);
+		contentPane.add(btnCancelar);
 	}
 }

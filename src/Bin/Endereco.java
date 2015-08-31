@@ -1,41 +1,25 @@
 package Bin;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
-@Entity
+//Aparentemente terminado
+@Embeddable
 @Table(name = "endereco")
 public class Endereco {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial")
-	private Integer id;
-	@Column(name = "rua_num")
-	private String end;
-	@Column(name = "cidade")
+	@Column(name = "lougradouro",length=100, nullable=true)
+	private String lougradouro;
+	@Column(name = "cidade",length=50, nullable=true)
 	private String cidade;
-	@Column(name = "bairro")
+	@Column(name = "bairro",length=50, nullable=true)
 	private String bairro;
-	@Column(name = "uf")
+	@Column(name = "uf",length=2, nullable=true)
 	private String uf;
-	@Column(name = "cep")
+	@Column(name = "cep",length=9, nullable=true)
 	private String cep;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getEnd() {
-		return end;
-	}
-	public void setEnd(String end) {
-		this.end = end;
-	}
+	
+	
 	public String getUf() {
 		return uf;
 	}
