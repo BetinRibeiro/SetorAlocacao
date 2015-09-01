@@ -15,6 +15,9 @@
 		<mapping class="Bin.Pessoa.Filiacao" />
 		<mapping class="Bin.Pessoa.Telefone" />
 		<mapping class="Bin.Endereco" />
+		<mapping class="Bin.Imovel.Caracteristica" />
+		<mapping class="Bin.Imovel.Escritura" />
+		<mapping class="Bin.Imovel.Imovel" />
 
 	</session-factory>
 </hibernate-configuration>

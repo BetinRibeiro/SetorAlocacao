@@ -10,24 +10,24 @@ public class Escritura {
 
 	// tenho que verificar se o numero que identifica a escritura contem letras - TODO
 	@Column(name = "numero_escritura",length = 20, nullable = true)
-	private long numeroEscritura;
+	private String numeroEscritura;
 	@Column(name = "nome_cartorio",length = 100, nullable = true)
 	private String nomeCartorio;
 	@Column(name = "cidade_cartorio",length = 100, nullable = true)
 	private String cidadeCartorio;
-	@Column(name = "uf",length = 2, nullable = true)
-	private String uf;
+	@Column(name = "uf_escritura",length = 2, nullable = true)
+	private String ufEscritura;
 	
 	public String getUf() {
-		return uf;
+		return ufEscritura;
 	}
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setUf(String ufEscritura) {
+		this.ufEscritura = ufEscritura;
 	}
-	public long getNumeroEscritura() {
+	public String getNumeroEscritura() {
 		return numeroEscritura;
 	}
-	public void setNumeroEscritura(long numeroEscritura) {
+	public void setNumeroEscritura(String numeroEscritura) {
 		this.numeroEscritura = numeroEscritura;
 	}
 	public String getNomeCartorio() {

@@ -6,10 +6,8 @@ import javax.persistence.Table;
 
 //Aparentemente terminado TODO
 @Embeddable
-@Table(name = "caracteristica_imovel")
+@Table(name = "informacaoes_imovel")
 public class Caracteristica {
-	@Column(name = "area",length = 8, nullable = true)
-	private String area;
 	@Column(name = "numero_comodos",length = 2, nullable = true)
 	private int numeroComodos;
 	@Column(name = "numero_garagens",length = 2, nullable = true)
@@ -18,16 +16,10 @@ public class Caracteristica {
 	private int numeroSuits;
 	@Column(name = "numero_banheiros",length=2, nullable=true)
 	private int numeroBanheiros;
-	@Column(name = "caracteristica",length=200, nullable=true)
-	private String caracteristicas;
+	@Column(name = "informacaoes",length=200, nullable=true)
+	private String informacaoes;
 	
 	
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
 	public int getNumeroComodos() {
 		return numeroComodos;
 	}
@@ -52,11 +44,11 @@ public class Caracteristica {
 	public void setNumeroBanheiros(int numeroBanheiros) {
 		this.numeroBanheiros = numeroBanheiros;
 	}
-	public String getCaracteristicas() {
-		return caracteristicas;
+	public String getInformacaoes() {
+		return informacaoes;
 	}
-	public void setCaracteristicas(String caracteristicas) {
-		this.caracteristicas = caracteristicas;
+	public void setInformacaoes(String informacaoes) {
+		this.informacaoes = informacaoes;
 	}
 	
 	

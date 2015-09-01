@@ -51,15 +51,10 @@ public class Pessoa {
 	private String sexo;
 	@Column(name = "uf_rg",length=2, nullable=true)
 	private String ufrg;
-
+	@Column(name = "uf_naturalidade",length=2, nullable=true)
+	private String ufNaturalidade;
 	
 	
-	public String getUfrg() {
-		return ufrg;
-	}
-	public void setUfrg(String ufrg) {
-		this.ufrg = ufrg;
-	}
 	//aqui é uma chave estrangeira
 	@Embedded
 	private Endereco end;
@@ -68,15 +63,20 @@ public class Pessoa {
 	@Embedded
 	private Filiacao filiacao;
 	
+
+	public String getUfrg() {
+		return ufrg;
+	}
+	public void setUfrg(String ufrg) {
+		this.ufrg = ufrg;
+	}
+	
 	public String getUfNaturalidade() {
 		return ufNaturalidade;
 	}
 	public void setUfNaturalidade(String ufNaturalidade) {
 		this.ufNaturalidade = ufNaturalidade;
 	}
-	@Column(name = "uf_naturalidade",length=2, nullable=true)
-	private String ufNaturalidade;
-	
 	public int getId() {
 		return id;
 	}

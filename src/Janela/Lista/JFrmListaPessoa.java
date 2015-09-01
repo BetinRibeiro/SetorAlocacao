@@ -1,6 +1,5 @@
 package Janela.Lista;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,30 +15,31 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import br.com.Persistence.Banco;
-import br.com.TableModel.*;
-import br.com.Bin.Funcionario.*;
-import br.com.Janela.Cadastro.*;
+import Bin.Pessoa.Pessoa;
+import Janela.Cadastro.JFrmCadastroPessoa;
+import Persistence.Dao;
+import TableModel.TMPessoa;
 
-public class JFrmListaPessoa extends JDialog implements
-		ActionListener {
+@SuppressWarnings("serial")
+public class JFrmListaPessoa extends JDialog implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField txtNomeBusca;
-	private JTable tableCargoFuncionario;
 	private JButton btnBuscar;
 	private JButton btnSair;
 	private JButton btnAlterar;
-	private Banco banco = new Banco();
-	private TMCargoFuncionario modelProd = new TMCargoFuncionario();
+	private Dao banco = new Dao();
+	private TMPessoa model = new TMPessoa();
 	private int a;
+	private JTable tablePessoa;
+	private Pessoa pessoa=null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			JFrmListaPessoa dialog = new JFrmListaPessoa();
+			JFrmListaPessoa dialog = new JFrmListaPessoa("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -49,9 +49,10 @@ public class JFrmListaPessoa extends JDialog implements
 
 	/**
 	 * Create the dialog.
+	 * @param escolher 
 	 */
-	public JFrmListaPessoa() {
-		setTitle("Consulta de Classifica\u00E7\u00E3o dos Cargos da Empresa");
+	public JFrmListaPessoa(String escolher) {
+		setTitle("Consulta de Classifica\u00E7\u00E3o dos Pessoas da Empresa");
 		setType(Type.UTILITY);
 		// setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 427);
@@ -69,25 +70,23 @@ public class JFrmListaPessoa extends JDialog implements
 		scrollPane.setBounds(0, 0, 574, 300);
 		panel.add(scrollPane);
 
-		tableCargoFuncionario = new JTable(modelProd);
+		tablePessoa = new JTable(model);
 
 		// tabela com colunas fixasv
-		tableCargoFuncionario.getTableHeader().setReorderingAllowed(false);
+		tablePessoa.getTableHeader().setReorderingAllowed(false);
 		// tamanho especifico da coluna
-		tableCargoFuncionario.getColumn("Descrição")
-				.setPreferredWidth(350);
+//		tablePessoa.getColumn("nome").setPreferredWidth(350);
 
 		// seleciona apenas uma linha
-		tableCargoFuncionario
-				.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(tableCargoFuncionario);
+		tablePessoa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(tablePessoa);
 
 		txtNomeBusca = new JTextField();
 		txtNomeBusca.setBounds(129, 10, 260, 20);
 		contentPane.add(txtNomeBusca);
 		txtNomeBusca.setColumns(10);
 
-		JLabel lblNome = new JLabel("Nome Cargo");
+		JLabel lblNome = new JLabel("Nome Pessoa");
 		lblNome.setBounds(10, 10, 97, 20);
 		contentPane.add(lblNome);
 
@@ -101,7 +100,7 @@ public class JFrmListaPessoa extends JDialog implements
 		contentPane.add(btnSair);
 		btnSair.addActionListener(this);
 
-		btnAlterar = new JButton("Alterar");
+		btnAlterar = new JButton("Detalhe");
 		btnAlterar.setBounds(399, 375, 89, 20);
 		contentPane.add(btnAlterar);
 		btnAlterar.addActionListener(this);
@@ -109,6 +108,10 @@ public class JFrmListaPessoa extends JDialog implements
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
 		btnAlterar.setEnabled(false);
+		if (escolher.equalsIgnoreCase("Escolher")) {
+			btnSair.setText("Escolher");
+			btnAlterar.setVisible(false);
+		}
 	}
 
 	@Override
@@ -124,11 +127,11 @@ public class JFrmListaPessoa extends JDialog implements
 		case "Sair":
 			dispose();
 			break;
-		case "Alterar":
-			altearar();
+		case "Detalhe":
+			Detalhe();
 			break;
-		case "Consultar":
-			consultar();
+		case "Escolher":
+			retorno();
 			break;
 
 		default:
@@ -137,40 +140,56 @@ public class JFrmListaPessoa extends JDialog implements
 
 	}
 
-	private void consultar() {
-		// TODO Não existe isso ainda, não vi a necessidade
 
+
+	private void retorno() {
+		setPessoa((Pessoa) banco.buscarPorId(Pessoa.class, (Integer) tablePessoa.getValueAt(
+				tablePessoa.getSelectedRow(), 0)));
+	getPessoa();
+	dispose();
+		
 	}
 
-	private void altearar() {
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+		
+	}
+	public Pessoa getPessoa() {
+		return pessoa;
+		
+	}
+
+	private void Detalhe() {
 		try {
-			JFrmCadastroCargo c = new JFrmCadastroCargo(
-					(Integer) tableCargoFuncionario.getValueAt(
-							tableCargoFuncionario.getSelectedRow(), 0));
+
+			Pessoa pessoa = (Pessoa) banco.buscarPorId(
+					Pessoa.class,
+					(Integer) tablePessoa.getValueAt(
+							tablePessoa.getSelectedRow(), 0));
+			JFrmCadastroPessoa c = new JFrmCadastroPessoa(pessoa);
 			txtNomeBusca.setText("");
-			modelProd.removeTudo();
+			model.removeTudo();
 			c.setVisible(true);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(contentPane,
-					"ERRO ao alterar um Cargo.");
+					"ERRO ao alterar um Pessoa.");
 		}
 	}
 
 	private void buscar() {
 		try {
-			modelProd.removeTudo();
+			model.removeTudo();
 			a = 0;
-			List<?> lista = banco.BuscaNome(Cargo.class,
-					txtNomeBusca.getText(), "descricao");
+			List<?> lista = banco.BuscaNome(Pessoa.class,
+					txtNomeBusca.getText(), "nome");
 			for (int i = 0; i < lista.size(); i++) {
-				Cargo classif = (Cargo) lista
-						.get(i);
-				modelProd.addRow(classif);
+				Pessoa classif = (Pessoa) lista.get(i);
+				model.addRow(classif);
 				a = 1;
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(contentPane,
-					"ERRO ao buscar um cargo.");
+					"ERRO ao buscar um Pessoa.");
 		}
 		if (a == 0) {
 			btnAlterar.setEnabled(false);
@@ -178,6 +197,6 @@ public class JFrmListaPessoa extends JDialog implements
 			btnAlterar.setEnabled(true);
 		}
 	}
-}
+	
 
 }

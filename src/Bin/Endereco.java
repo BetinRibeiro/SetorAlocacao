@@ -14,8 +14,8 @@ public class Endereco {
 	private String cidade;
 	@Column(name = "bairro",length=50, nullable=true)
 	private String bairro;
-	@Column(name = "uf",length=2, nullable=true)
-	private String uf;
+	@Column(name = "uf_endereco",length=2, nullable=true)
+	private String ufEndereco;
 	@Column(name = "cep",length=9, nullable=true)
 	private String cep;
 	public String getLougradouro() {
@@ -37,10 +37,10 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 	public String getUf() {
-		return uf;
+		return ufEndereco;
 	}
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setUf(String ufEndereco) {
+		this.ufEndereco = ufEndereco;
 	}
 	public String getCep() {
 		return cep;

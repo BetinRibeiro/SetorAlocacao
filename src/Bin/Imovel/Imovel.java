@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import Bin.Endereco;
@@ -19,9 +21,10 @@ public class Imovel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	@Column(name = "cod_imovel",length=6, nullable=true)
+	@Column(name = "cod_imovel",length=6)
 	private String codImovel;
-	@Embedded
+	@OneToOne
+    @JoinColumn(name="id_pessoa")
 	private Pessoa proprietario;
 	@Embedded
 	private Escritura escritura;
@@ -35,11 +38,27 @@ public class Imovel {
 	private String finalidade;
 	@Column(name = "valor",length=11, nullable=true)
 	private float valor;
+	@Column(name = "info_complementar",length=80, nullable=true)
+	private String informacoesComplementares;
+	
+	
+	public String getInformacoesComplementares() {
+		return informacoesComplementares;
+	}
+	public void setInformacoesComplementares(String informacoesComplementares) {
+		this.informacoesComplementares = informacoesComplementares;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCodImovel() {
+		return codImovel;
+	}
+	public void setCodImovel(String codImovel) {
+		this.codImovel = codImovel;
 	}
 	public Pessoa getProprietario() {
 		return proprietario;
@@ -83,6 +102,11 @@ public class Imovel {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	
+	
+	
+	
+	
 	
 	
 	

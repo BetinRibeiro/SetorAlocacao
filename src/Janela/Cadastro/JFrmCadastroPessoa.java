@@ -390,6 +390,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		if (pessoa != null) {
 
 			btnSalvarAlterar.setText("Alterar");
+			btnCancelarDeletar.setToolTipText("Deletar");
 			inserirPessoa(pessoa);
 			txtEnable(false);
 		}
@@ -398,10 +399,12 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		// for clicado a ação dele seja enviada para o metodo actionPerformed
 		btnCancelarDeletar.addActionListener(this);
 		btnSalvarAlterar.addActionListener(this);
+		pessoaParaAlterar=pessoa;
 
 	}
 
 	private void inserirPessoa(Pessoa pessoa) {
+		txtId.setText(String.valueOf(pessoa.getId()));
 		txtNome.setText(pessoa.getNome());
 		txtRg.setText(String.valueOf(pessoa.getRg()));
 		txtCpf.setText(String.valueOf(pessoa.getCpf()));
@@ -425,6 +428,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		boxUfRg.setSelectedItem(pessoa.getUfrg());
 		boxUFNaturali.setSelectedItem(pessoa.getUfNaturalidade());
 		boxOrgaoExpedidor.setSelectedItem(pessoa.getOrgaoEspedidor());
+		dtData.setDate(pessoa.getDataNascimento());
 
 	}
 
@@ -451,7 +455,8 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		boxUfEnd.setEnabled(valor);
 		boxUfRg.setEnabled(valor);
 		boxUFNaturali.setEnabled(valor);
-		boxOrgaoExpedidor.setEditable(valor);
+		boxOrgaoExpedidor.setEnabled(valor);
+		dtData.setEnabled(valor);
 
 	}
 
@@ -462,19 +467,30 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		switch (acao) {
 		case "Alterar":
 			liberarAlteracao();
+			btnSalvarAlterar.setText("Salvar");
+			btnCancelarDeletar.setText("Cancelar");
 			break;
 		case "Salvar":
 			salvar();
+			btnSalvarAlterar.setText("Alterar");
+			btnCancelarDeletar.setText("Novo");
 			break;
 		case "Cancelar":
+			dispose();
+			break;
+		case "Novo":
+			txtEnable(true);
 			limparTxt();
+			btnSalvarAlterar.setText("Salvar");
+			btnCancelarDeletar.setText("Cancelar");
 			break;
 		case "Deletar":
 			int op = JOptionPane.showConfirmDialog(contentPane,
 					"Deseja realmente deletar?");
 			System.out.println(op);
 			if (op == 0) {
-				// TODO agora podemos deletar ainda não esta implementada
+				JOptionPane.showMessageDialog(contentPane,
+						"Você não tem autorização!");
 			}
 			break;
 
@@ -486,6 +502,10 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 	private void salvar() {
 		Pessoa pessoa = new Pessoa();
+		if (pessoaParaAlterar != null) {
+			System.out.println(txtId.getText());
+			pessoa.setId(Integer.parseInt(txtId.getText()));
+		}
 		pessoa.setNome(txtNome.getText());
 		pessoa.setRg(Long.valueOf(txtRg.getText()));
 		pessoa.setCpf(Long.valueOf(txtCpf.getText()));
@@ -494,42 +514,45 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		pessoa.setNaturalidade(txtNaturalidade.getText());
 		pessoa.setNascionalidade(txtNascionalidade.getText());
 		pessoa.setObservacao(txtObservação.getText());
-		
+
 		Endereco endereco = new Endereco();
 		endereco.setBairro(txtBairro.getText());
 		endereco.setCep(txtCep.getText());
 		endereco.setCidade(txtCidade.getText());
 		endereco.setLougradouro(txtLougradouroNumero.getText());
 		endereco.setUf(String.valueOf(boxUfEnd.getSelectedItem()));
-		
+
 		pessoa.setEnd(endereco);
-		
+
 		Telefone telefone = new Telefone();
 		telefone.setFone1(Long.parseLong(txtFone1.getText()));
 		telefone.setFone2(Long.parseLong(txtCel.getText()));
-		
+
 		pessoa.setTelefone(telefone);
-		
+
 		Filiacao filiacao = new Filiacao();
 		filiacao.setNomeMae(txtMae.getText());
 		filiacao.setNomePai(txtPai.getText());
-		
+
 		pessoa.setFiliacao(filiacao);
 		pessoa.setEscolaridade(String.valueOf(boxEscola.getSelectedItem()));
 		pessoa.setEstadoCivil(String.valueOf(boxEstadoCivil.getSelectedItem()));
 		pessoa.setSexo(String.valueOf(boxSexo.getSelectedItem()));
 		pessoa.setUfrg(String.valueOf(boxUfRg.getSelectedItem()));
 		pessoa.setUfNaturalidade(String.valueOf(boxUFNaturali.getSelectedItem()));
-		pessoa.setOrgaoEspedidor(String.valueOf(boxOrgaoExpedidor.getSelectedItem()));
-		
+		pessoa.setOrgaoEspedidor(String.valueOf(boxOrgaoExpedidor
+				.getSelectedItem()));
+
 		pessoa.setDataNascimento(Date.valueOf(df.format(dtData.getDate())));
-		
-		
-		banco.salvarObjeto(pessoa);
+
+		banco.salvarOuAtualizarObjeto(pessoa);
 		JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
-		
-		
-		
+		if (!txtId.getText().equalsIgnoreCase("")) {
+			dispose();
+		}
+		txtEnable(false);
+		btnCancelarDeletar.setToolTipText("Novo");
+
 	}
 
 	private void liberarAlteracao() {
@@ -539,6 +562,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	}
 
 	private void limparTxt() {
+		txtId.setText("");
 		txtNome.setText("");
 		txtRg.setText("");
 		txtCpf.setText("");
@@ -562,6 +586,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		boxUfRg.setSelectedIndex(5);
 		boxUFNaturali.setSelectedIndex(5);
 		boxOrgaoExpedidor.setSelectedIndex(62);
+		dtData.setDate(new java.util.Date());
 
 	}
 }
