@@ -135,7 +135,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	 */
 	public JFrmCadastroPessoa(Pessoa pessoa) {
 		setTitle("Cadastro de Pessoa");
-		// setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 486);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

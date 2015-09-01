@@ -30,7 +30,7 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		menuBar.setBounds(1, 1, this.getWidth() - 2, 20);
 		this.add(menuBar);
 
-		JMenu menuCadatro = new JMenu("Cadatro");
+		JMenu menuCadatro = new JMenu("Cadastro");
 		menuBar.add(menuCadatro);
 
 		JMenuItem opCadastroImvel = new JMenuItem("Cadastro Im\u00F3vel");
@@ -53,6 +53,9 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 
 		JMenu menuRelatrio = new JMenu("Relat\u00F3rio");
 		menuBar.add(menuRelatrio);
+		
+		JMenuItem opCaptacao = new JMenuItem("Capta\u00E7\u00E3o");
+		menuCadatro.add(opCaptacao);
 
 		// cadastros
 		opCadastroImvel.addActionListener(this);
@@ -63,6 +66,8 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		opConsultaImvel.setActionCommand("CONS_IMOVEL");
 		opConsultaPessoa.addActionListener(this);
 		opConsultaPessoa.setActionCommand("CONS_PESSOA");
+		opCaptacao.addActionListener(this);
+		opCaptacao.setActionCommand("CAD_CAPT");
 
 	}
 
@@ -88,6 +93,10 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		case "CONS_PESSOA":
 			JFrmListaPessoa consultaPessoa = new JFrmListaPessoa("");
 			consultaPessoa.setVisible(true);
+			break;
+		case "CAD_CAPT":
+			JFrmCaptacao captacaoCliente = new JFrmCaptacao(null);
+			captacaoCliente.setVisible(true);
 			break;
 
 		default:

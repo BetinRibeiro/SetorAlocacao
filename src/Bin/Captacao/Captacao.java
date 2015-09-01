@@ -25,6 +25,8 @@ public class Captacao {
 	@Column(name = "data_cadastro")
 	@Temporal(TemporalType.DATE)
 	private Date dataCadastro;
+	@Column(name = "descricao",length=200, nullable=true)
+	private String descricao;
 	
 	public int getId() {
 		return id;
@@ -49,6 +51,12 @@ public class Captacao {
 	}
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	
