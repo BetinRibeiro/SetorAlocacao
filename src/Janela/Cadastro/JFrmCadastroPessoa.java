@@ -522,6 +522,8 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		pessoa.setUfNaturalidade(String.valueOf(boxUFNaturali.getSelectedItem()));
 		pessoa.setOrgaoEspedidor(String.valueOf(boxOrgaoExpedidor.getSelectedItem()));
 		
+		pessoa.setDataNascimento(Date.valueOf(df.format(dtData.getDate())));
+		
 		
 		banco.salvarObjeto(pessoa);
 		JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
