@@ -18,19 +18,11 @@ public class Endereco {
 	private String uf;
 	@Column(name = "cep",length=9, nullable=true)
 	private String cep;
-	
-	
-	public String getUf() {
-		return uf;
+	public String getLougradouro() {
+		return lougradouro;
 	}
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setLougradouro(String lougradouro) {
+		this.lougradouro = lougradouro;
 	}
 	public String getCidade() {
 		return cidade;
@@ -44,6 +36,21 @@ public class Endereco {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	
+	
+	
 	
 	
 	

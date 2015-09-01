@@ -11,7 +11,10 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
 
-		<mapping class="Bin.Produto" />
+		<mapping class="Bin.Pessoa.Pessoa" />
+		<mapping class="Bin.Pessoa.Filiacao" />
+		<mapping class="Bin.Pessoa.Telefone" />
+		<mapping class="Bin.Endereco" />
 
 	</session-factory>
 </hibernate-configuration>

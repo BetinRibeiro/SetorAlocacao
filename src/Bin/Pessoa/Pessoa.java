@@ -29,8 +29,8 @@ public class Pessoa {
 	private String naturalidade;
 	@Column(name = "estado_civil",length=80, nullable=true, unique=false)
 	private String estadoCivil;
-	@Column(name = "profissao",length=80, nullable=true, unique=false)
-	private String profissao;
+	@Column(name = "cargo",length=80, nullable=true, unique=false)
+	private String cargo;
 	@Column(name = "rg",length=10, nullable=true, unique=true)
 	private long rg;
 	@Column(name = "orgao_espedidor",length=10, nullable=true, unique=false)
@@ -42,6 +42,23 @@ public class Pessoa {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
 	private Date dataNascimento;
+	@Column(name = "observacao",length=80, nullable=true, unique=true)
+	private String observacao;
+	@Column(name = "escolaridade",length=80, nullable=true, unique=true)
+	private String escolaridade;
+	@Column(name = "sexo",length=80, nullable=true, unique=true)
+	private String sexo;
+	@Column(name = "uf_rg",length=2, nullable=true)
+	private String ufrg;
+
+	
+	
+	public String getUfrg() {
+		return ufrg;
+	}
+	public void setUfrg(String ufrg) {
+		this.ufrg = ufrg;
+	}
 	//aqui é uma chave estrangeira
 	@Embedded
 	private Endereco end;
@@ -50,6 +67,14 @@ public class Pessoa {
 	@Embedded
 	private Filiacao filiacao;
 	
+	public String getUfNaturalidade() {
+		return ufNaturalidade;
+	}
+	public void setUfNaturalidade(String ufNaturalidade) {
+		this.ufNaturalidade = ufNaturalidade;
+	}
+	@Column(name = "uf_naturalidade",length=2, nullable=true)
+	private String ufNaturalidade;
 	
 	public int getId() {
 		return id;
@@ -81,11 +106,11 @@ public class Pessoa {
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-	public String getProfissao() {
-		return profissao;
+	public String getCargo() {
+		return cargo;
 	}
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 	public long getRg() {
 		return rg;
@@ -134,6 +159,24 @@ public class Pessoa {
 	}
 	public void setFiliacao(Filiacao filiacao) {
 		this.filiacao = filiacao;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+	public String getEscolaridade() {
+		return escolaridade;
+	}
+	public void setEscolaridade(String escolaridade) {
+		this.escolaridade = escolaridade;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	

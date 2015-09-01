@@ -141,12 +141,11 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener{
 			cadastroimovel.setVisible(true);
 			break;
 		case "CAD_LOCADOR":
-			JFrmCadastroPessoa cadastroLocador = new JFrmCadastroPessoa();
+			JFrmCadastroPessoa cadastroLocador = new JFrmCadastroPessoa(null);
 			cadastroLocador.setVisible(true);
 			break;
 		case "CAD_PRE":
-			JFrmPreCadastro precadastro = new JFrmPreCadastro();
-			precadastro.setVisible(true);
+//			TODO
 			break;
 
 		default:
