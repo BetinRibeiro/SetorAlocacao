@@ -84,6 +84,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	String[] numeros = { "0", "1", "2", "3", "4", "5", "6" , "7", "8", "9"};
 	String[] finalidade = { "Locação", "Venda"};
+	private JTextField txtValor;
+	private JTextField txtValorAluguel;
 
 	/**
 	 * Launch the application.
@@ -244,7 +246,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		panel.add(lblUfEndereo);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(411, 114, 89, 20);
+		btnBuscar.setBounds(411, 115, 89, 20);
 		panel.add(btnBuscar);
 
 		JLabel lblSuites = new JLabel("Suites");
@@ -312,6 +314,26 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		chckbxDisponvel = new JCheckBox("Dispon\u00EDvel");
 		chckbxDisponvel.setBounds(610, 24, 97, 23);
 		panel.add(chckbxDisponvel);
+		
+		txtValor = new JTextField();
+		txtValor.setText("");
+		txtValor.setColumns(10);
+		txtValor.setBounds(510, 115, 90, 20);
+		panel.add(txtValor);
+		
+		JLabel lblValorImovel = new JLabel("Valor Imovel");
+		lblValorImovel.setBounds(510, 100, 93, 14);
+		panel.add(lblValorImovel);
+		
+		txtValorAluguel = new JTextField();
+		txtValorAluguel.setText("");
+		txtValorAluguel.setColumns(10);
+		txtValorAluguel.setBounds(612, 115, 90, 20);
+		panel.add(txtValorAluguel);
+		
+		JLabel lblValorAluguel = new JLabel("Valor Aluguel");
+		lblValorAluguel.setBounds(612, 100, 93, 14);
+		panel.add(lblValorAluguel);
 
 		btnCancelarDeletar = new JButton("Cancelar");
 		btnCancelarDeletar.setBounds(656, 403, 89, 23);
@@ -351,6 +373,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 	}
 
 	private void inserirImovel(Imovel imovel) {
+		txtValor.setText(String.valueOf(imovel.getValor()).replace(",", "."));
+		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel()).replace(",", "."));
 		txtLougradouro.setText(imovel.getEnd().getLougradouro());
 		txtBairro.setText(imovel.getEnd().getBairro());
 		txtCidade.setText(imovel.getEnd().getCidade());
@@ -389,13 +413,13 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		txtCidade.setEnabled(valor);
 		txtCep.setEnabled(valor);
 		txtCodImovel.setEnabled(valor);
-		txtIdProprietario.setEnabled(valor);
-		txtNomeProprietario.setEnabled(valor);
 		txtNumeroEscritura.setEnabled(valor);
 		txtNomeCartorio.setEnabled(valor);
 		txtCidadeCartorio.setEnabled(valor);
 		txtInformacoesAlocacao.setEnabled(valor);
 		txtInformacoesCaracteristica.setEnabled(valor);
+		txtValor.setEnabled(valor);
+		txtValorAluguel.setEnabled(valor);
 
 		boxFinalidade.setEnabled(valor);
 		boxTipo.setEnabled(valor);
@@ -469,6 +493,9 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 			System.out.println(txtId.getText());
 			imovel.setId(Integer.parseInt(txtId.getText()));
 		}
+		
+		imovel.setValor(Float.parseFloat(txtValor.getText()));
+		imovel.setValor(Float.parseFloat(txtValorAluguel.getText()));
 
 		imovel.setCodImovel(txtCodImovel.getText());
 		imovel.setTipo(String.valueOf(boxTipo.getSelectedItem()));
@@ -523,6 +550,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	private void limparTxt() {
 		txtId.setText("");
+		txtValor.setText("");
+		txtValorAluguel.setText("");
 		txtLougradouro.setText("");
 		txtBairro.setText("");
 		txtCidade.setText("");
@@ -534,6 +563,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		txtInformacoesAlocacao.setText("");
 		txtInformacoesCaracteristica
 				.setText("Tamanho : m²\n\nÁrea costruida: m²");
+		txtIdProprietario.setText("");
+		txtNomeProprietario.setText("");
 
 		boxFinalidade.setSelectedItem(0);
 		;

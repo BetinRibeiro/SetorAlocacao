@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Escritura {
 
 	// tenho que verificar se o numero que identifica a escritura contem letras - TODO
-	@Column(name = "numero_escritura",length = 20, nullable = true)
+	@Column(name = "numero_escritura",length = 20, nullable = true, unique=false)
 	private String numeroEscritura;
 	@Column(name = "nome_cartorio",length = 100, nullable = true)
 	private String nomeCartorio;

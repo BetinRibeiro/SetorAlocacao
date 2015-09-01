@@ -21,7 +21,7 @@ public class Imovel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	@Column(name = "cod_imovel",length=6)
+	@Column(name = "cod_imovel",length=6, unique=false)
 	private String codImovel;
 	@OneToOne
     @JoinColumn(name="id_pessoa")
@@ -38,6 +38,8 @@ public class Imovel {
 	private String finalidade;
 	@Column(name = "valor",length=11, nullable=true)
 	private float valor;
+	@Column(name = "valor_aluguel",length=11, nullable=true)
+	private float valorAluguel;
 	@Column(name = "info_complementar",length=80, nullable=true)
 	private String informacoesComplementares;
 	
@@ -102,6 +104,13 @@ public class Imovel {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	public float getValorAluguel() {
+		return valorAluguel;
+	}
+	public void setValorAluguel(float valorAluguel) {
+		this.valorAluguel = valorAluguel;
+	}
+	
 	
 	
 	

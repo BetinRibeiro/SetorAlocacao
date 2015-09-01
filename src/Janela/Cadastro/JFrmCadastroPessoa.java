@@ -545,10 +545,18 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 		pessoa.setDataNascimento(Date.valueOf(df.format(dtData.getDate())));
 
-		banco.salvarOuAtualizarObjeto(pessoa);
+		if (pessoaParaAlterar != null) {
+			banco.salvarOuAtualizarObjeto(pessoa);
+			JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
+			dispose();
+		}else  {
+			banco.salvarObjeto(pessoa);
+			txtId.setText(String.valueOf(pessoa.getId()));
+		}
+		
 		JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
 		if (!txtId.getText().equalsIgnoreCase("")) {
-			dispose();
+			
 		}
 		txtEnable(false);
 		btnCancelarDeletar.setToolTipText("Novo");

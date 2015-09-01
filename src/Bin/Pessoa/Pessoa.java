@@ -45,9 +45,9 @@ public class Pessoa {
 	private Date dataNascimento;
 	@Column(name = "observacao",length=80, nullable=true, unique=true)
 	private String observacao;
-	@Column(name = "escolaridade",length=80, nullable=true, unique=true)
+	@Column(name = "escolaridade",length=80, nullable=true, unique=false)
 	private String escolaridade;
-	@Column(name = "sexo",length=80, nullable=true, unique=true)
+	@Column(name = "sexo",length=80, nullable=true, unique=false)
 	private String sexo;
 	@Column(name = "uf_rg",length=2, nullable=true)
 	private String ufrg;
