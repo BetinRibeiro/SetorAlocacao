@@ -1,11 +1,7 @@
 package Janela.Cadastro;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.EventQueue;
 
-import javax.swing.Box;
-import javax.swing.ComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,8 +19,6 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JComboBox;
 
@@ -36,7 +30,8 @@ import Bin.Pessoa.Pessoa;
 import Bin.Pessoa.Telefone;
 import Persistence.*;
 
-public class JFrmCadastroPessoa extends JDialog implements ActionListener {
+@SuppressWarnings("serial")
+public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadastravel {
 
 	// Painel principal onde tudo é aberto aqui
 	private JPanel contentPane;
@@ -66,6 +61,8 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	private JComboBox boxEstadoCivil;
 	private JComboBox boxUfEnd;
 	private JComboBox boxUfRg;
+	private JComboBox boxUFNaturali;
+	private JComboBox boxOrgaoExpedidor;
 
 	// estrutura que carrega DATE
 	private JDateChooser dtData;
@@ -107,9 +104,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 			"Viuvo(a)", "Separado(a)" };
 	String[] sexo = { "Masculino", "Feminino" };
 
-	private JComboBox boxUFNaturali;
-
-	private JComboBox boxOrgaoExpedidor;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,7 +130,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	 */
 	public JFrmCadastroPessoa(Pessoa pessoa) {
 		setTitle("Cadastro de Pessoa");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 486);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -391,7 +386,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 			btnSalvarAlterar.setText("Alterar");
 			btnCancelarDeletar.setToolTipText("Deletar");
-			inserirPessoa(pessoa);
+			inserir(pessoa);
 			txtEnable(false);
 		}
 
@@ -403,63 +398,9 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 	}
 
-	private void inserirPessoa(Pessoa pessoa) {
-		txtId.setText(String.valueOf(pessoa.getId()));
-		txtNome.setText(pessoa.getNome());
-		txtRg.setText(String.valueOf(pessoa.getRg()));
-		txtCpf.setText(String.valueOf(pessoa.getCpf()));
-		txtLougradouroNumero.setText(pessoa.getEnd().getLougradouro());
-		txtBairro.setText(pessoa.getEnd().getBairro());
-		txtCidade.setText(pessoa.getEnd().getCidade());
-		txtFone1.setText(String.valueOf(pessoa.getTelefone().getFone1()));
-		txtCel.setText(String.valueOf(pessoa.getTelefone().getFone2()));
-		txtCep.setText(pessoa.getEnd().getCep());
-		txtEmail.setText(pessoa.getEmail());
-		txtCargo.setText(pessoa.getCargo());
-		txtNaturalidade.setText(pessoa.getNaturalidade());
-		txtNascionalidade.setText(pessoa.getNascionalidade());
-		txtMae.setText(pessoa.getFiliacao().getNomeMae());
-		txtObservação.setText(pessoa.getObservacao());
-		txtPai.setText(pessoa.getFiliacao().getNomePai());
-		boxEscola.setSelectedItem(pessoa.getEscolaridade());
-		boxEstadoCivil.setSelectedItem(pessoa.getEstadoCivil());
-		boxSexo.setSelectedItem(pessoa.getSexo());
-		boxUfEnd.setSelectedItem(pessoa.getEnd().getUf());
-		boxUfRg.setSelectedItem(pessoa.getUfrg());
-		boxUFNaturali.setSelectedItem(pessoa.getUfNaturalidade());
-		boxOrgaoExpedidor.setSelectedItem(pessoa.getOrgaoEspedidor());
-		dtData.setDate(pessoa.getDataNascimento());
+	
 
-	}
-
-	private void txtEnable(boolean valor) {
-		txtNome.setEnabled(valor);
-		txtRg.setEnabled(valor);
-		txtCpf.setEnabled(valor);
-		txtLougradouroNumero.setEnabled(valor);
-		txtBairro.setEnabled(valor);
-		txtCidade.setEnabled(valor);
-		txtFone1.setEnabled(valor);
-		txtCel.setEnabled(valor);
-		txtCep.setEnabled(valor);
-		txtEmail.setEnabled(valor);
-		txtCargo.setEnabled(valor);
-		txtNaturalidade.setEnabled(valor);
-		txtNascionalidade.setEnabled(valor);
-		txtMae.setEnabled(valor);
-		txtObservação.setEnabled(valor);
-		txtPai.setEnabled(valor);
-		boxEscola.setEnabled(valor);
-		boxEstadoCivil.setEnabled(valor);
-		boxSexo.setEnabled(valor);
-		boxUfEnd.setEnabled(valor);
-		boxUfRg.setEnabled(valor);
-		boxUFNaturali.setEnabled(valor);
-		boxOrgaoExpedidor.setEnabled(valor);
-		dtData.setEnabled(valor);
-
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
@@ -500,7 +441,47 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 	}
 
-	private void salvar() {
+		
+
+	
+
+
+
+	@Override
+	public void inserir(Object ob) {
+		Pessoa pessoa = (Pessoa) ob;
+			txtId.setText(String.valueOf(pessoa.getId()));
+			txtNome.setText(pessoa.getNome());
+			txtRg.setText(String.valueOf(pessoa.getRg()));
+			txtCpf.setText(String.valueOf(pessoa.getCpf()));
+			txtLougradouroNumero.setText(pessoa.getEnd().getLougradouro());
+			txtBairro.setText(pessoa.getEnd().getBairro());
+			txtCidade.setText(pessoa.getEnd().getCidade());
+			txtFone1.setText(String.valueOf(pessoa.getTelefone().getFone1()));
+			txtCel.setText(String.valueOf(pessoa.getTelefone().getFone2()));
+			txtCep.setText(pessoa.getEnd().getCep());
+			txtEmail.setText(pessoa.getEmail());
+			txtCargo.setText(pessoa.getCargo());
+			txtNaturalidade.setText(pessoa.getNaturalidade());
+			txtNascionalidade.setText(pessoa.getNascionalidade());
+			txtMae.setText(pessoa.getFiliacao().getNomeMae());
+			txtObservação.setText(pessoa.getObservacao());
+			txtPai.setText(pessoa.getFiliacao().getNomePai());
+			boxEscola.setSelectedItem(pessoa.getEscolaridade());
+			boxEstadoCivil.setSelectedItem(pessoa.getEstadoCivil());
+			boxSexo.setSelectedItem(pessoa.getSexo());
+			boxUfEnd.setSelectedItem(pessoa.getEnd().getUf());
+			boxUfRg.setSelectedItem(pessoa.getUfrg());
+			boxUFNaturali.setSelectedItem(pessoa.getUfNaturalidade());
+			boxOrgaoExpedidor.setSelectedItem(pessoa.getOrgaoEspedidor());
+			dtData.setDate(pessoa.getDataNascimento());
+
+	}
+
+	
+
+	@Override
+	public void salvar() {
 		Pessoa pessoa = new Pessoa();
 		if (pessoaParaAlterar != null) {
 			System.out.println(txtId.getText());
@@ -561,40 +542,76 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		txtEnable(false);
 		btnCancelarDeletar.setToolTipText("Novo");
 
+		
 	}
 
-	private void liberarAlteracao() {
-		btnSalvarAlterar.setToolTipText("Salvar");
-		txtEnable(true);
+	@Override
+	public void liberarAlteracao() {
+			btnSalvarAlterar.setToolTipText("Salvar");
+			txtEnable(true);
 
+		
 	}
 
-	private void limparTxt() {
-		txtId.setText("");
-		txtNome.setText("");
-		txtRg.setText("");
-		txtCpf.setText("");
-		txtLougradouroNumero.setText("");
-		txtBairro.setText("");
-		txtCidade.setText("");
-		txtFone1.setText("");
-		txtCel.setText("");
-		txtCep.setText("");
-		txtEmail.setText("");
-		txtCargo.setText("");
-		txtNaturalidade.setText("");
-		txtNascionalidade.setText("Brasileiro(a)");
-		txtMae.setText("");
-		txtObservação.setText("");
-		txtPai.setText("");
-		boxEscola.setSelectedIndex(4);
-		boxEstadoCivil.setSelectedIndex(0);
-		boxSexo.setSelectedIndex(0);
-		boxUfEnd.setSelectedIndex(5);
-		boxUfRg.setSelectedIndex(5);
-		boxUFNaturali.setSelectedIndex(5);
-		boxOrgaoExpedidor.setSelectedIndex(62);
-		dtData.setDate(new java.util.Date());
+	@Override
+	public void limparTxt() {
+			txtId.setText("");
+			txtNome.setText("");
+			txtRg.setText("");
+			txtCpf.setText("");
+			txtLougradouroNumero.setText("");
+			txtBairro.setText("");
+			txtCidade.setText("");
+			txtFone1.setText("");
+			txtCel.setText("");
+			txtCep.setText("");
+			txtEmail.setText("");
+			txtCargo.setText("");
+			txtNaturalidade.setText("");
+			txtNascionalidade.setText("Brasileiro(a)");
+			txtMae.setText("");
+			txtObservação.setText("");
+			txtPai.setText("");
+			boxEscola.setSelectedIndex(4);
+			boxEstadoCivil.setSelectedIndex(0);
+			boxSexo.setSelectedIndex(0);
+			boxUfEnd.setSelectedIndex(5);
+			boxUfRg.setSelectedIndex(5);
+			boxUFNaturali.setSelectedIndex(5);
+			boxOrgaoExpedidor.setSelectedIndex(62);
+			dtData.setDate(new java.util.Date());
 
+		
+	}
+
+	@Override
+	public void txtEnable(boolean valor) {
+			txtNome.setEnabled(valor);
+			txtRg.setEnabled(valor);
+			txtCpf.setEnabled(valor);
+			txtLougradouroNumero.setEnabled(valor);
+			txtBairro.setEnabled(valor);
+			txtCidade.setEnabled(valor);
+			txtFone1.setEnabled(valor);
+			txtCel.setEnabled(valor);
+			txtCep.setEnabled(valor);
+			txtEmail.setEnabled(valor);
+			txtCargo.setEnabled(valor);
+			txtNaturalidade.setEnabled(valor);
+			txtNascionalidade.setEnabled(valor);
+			txtMae.setEnabled(valor);
+			txtObservação.setEnabled(valor);
+			txtPai.setEnabled(valor);
+			boxEscola.setEnabled(valor);
+			boxEstadoCivil.setEnabled(valor);
+			boxSexo.setEnabled(valor);
+			boxUfEnd.setEnabled(valor);
+			boxUfRg.setEnabled(valor);
+			boxUFNaturali.setEnabled(valor);
+			boxOrgaoExpedidor.setEnabled(valor);
+			dtData.setEnabled(valor);
+
+
+		
 	}
 }

@@ -12,6 +12,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import Janela.Cadastro.*;
+import Janela.Lista.FrmListaCaptacao;
 import Janela.Lista.JFrmListaImoveis;
 import Janela.Lista.JFrmListaPessoa;
 
@@ -56,6 +57,10 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		
 		JMenuItem opCaptacao = new JMenuItem("Capta\u00E7\u00E3o");
 		menuCadatro.add(opCaptacao);
+		
+		JMenuItem opConsultaCaptao = new JMenuItem("Consulta Capta\u00E7\u00E3o");
+		menuConsulta.add(opConsultaCaptao);
+		
 
 		// cadastros
 		opCadastroImvel.addActionListener(this);
@@ -68,6 +73,10 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		opConsultaPessoa.setActionCommand("CONS_PESSOA");
 		opCaptacao.addActionListener(this);
 		opCaptacao.setActionCommand("CAD_CAPT");
+		opConsultaCaptao.addActionListener(this);
+		opConsultaCaptao.setActionCommand("CONS_CAPT");
+		
+		
 
 	}
 
@@ -97,6 +106,10 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		case "CAD_CAPT":
 			JFrmCaptacao captacaoCliente = new JFrmCaptacao(null);
 			captacaoCliente.setVisible(true);
+			break;
+		case "CONS_CAPT":
+			FrmListaCaptacao listaCaptacao = new FrmListaCaptacao("");
+			listaCaptacao.setVisible(true);
 			break;
 
 		default:

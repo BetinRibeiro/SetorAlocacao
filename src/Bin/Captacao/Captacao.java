@@ -1,6 +1,6 @@
 package Bin.Captacao;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +18,50 @@ public class Captacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
+	
 	@Column(name = "nome",length=50, nullable=true)
 	private String nome;
+	
 	@Column(name = "num_telefone",length=12, nullable=true)
 	private String telefone;
+	
 	@Column(name = "data_cadastro")
 	@Temporal(TemporalType.DATE)
 	private Date dataCadastro;
+	
 	@Column(name = "descricao",length=200, nullable=true)
 	private String descricao;
 	
+	@Column(name = "interesse",length=35, nullable=true)
+	private String interesse;
+	
+	@Column(name = "vlr_med", nullable=true)
+	private float valorMedio;
+	
+	@Column(name = "observacao",length=35, nullable=true)
+	private String observacao;
+	
+	
+	
+	
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+	public String getInteresse() {
+		return interesse;
+	}
+	public void setInteresse(String interesse) {
+		this.interesse = interesse;
+	}
+	public float getValorMedio() {
+		return valorMedio;
+	}
+	public void setValorMedio(float valorMedio) {
+		this.valorMedio = valorMedio;
+	}
 	public int getId() {
 		return id;
 	}

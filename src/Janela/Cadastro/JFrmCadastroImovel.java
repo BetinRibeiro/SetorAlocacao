@@ -9,7 +9,6 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -30,7 +29,7 @@ import Bin.Pessoa.Pessoa;
 import Janela.Lista.JFrmListaPessoa;
 import Persistence.Dao;
 
-public class JFrmCadastroImovel extends JDialog implements ActionListener {
+public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadastravel {
 
 	/**
 	 * 
@@ -360,7 +359,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 			btnSalvarAlterar.setText("Alterar");
 			btnCancelarDeletar.setToolTipText("Deletar");
-			inserirImovel(imovel);
+			inserir(imovel);
 			txtEnable(false);
 		}
 
@@ -372,7 +371,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		imovelParaAlterar = imovel;
 	}
 
-	private void inserirImovel(Imovel imovel) {
+	public void inserir(Object ob) {
+		Imovel imovel = (Imovel) ob;
 		txtValor.setText(String.valueOf(imovel.getValor()).replace(",", "."));
 		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel()).replace(",", "."));
 		txtLougradouro.setText(imovel.getEnd().getLougradouro());
@@ -388,10 +388,9 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 				.getNumeroEscritura()));
 		txtNomeCartorio.setText(imovel.getEscritura().getNomeCartorio());
 		txtCidadeCartorio.setText(imovel.getEscritura().getCidadeCartorio());
-		txtInformacoesAlocacao.setText(imovel.getCaracteristicas()
-				.getInformacaoes());
+		txtInformacoesAlocacao.setText(imovel.getInformacoesComplementares());
 		txtInformacoesCaracteristica.setText(imovel
-				.getInformacoesComplementares());
+				.getCaracteristicas().getInformacaoes());
 
 		boxFinalidade.setSelectedItem(imovel.getFinalidade());
 		boxTipo.setSelectedItem(imovel.getTipo());
@@ -407,7 +406,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	}
 
-	private void txtEnable(boolean valor) {
+	public void txtEnable(boolean valor) {
 		txtLougradouro.setEnabled(valor);
 		txtBairro.setEnabled(valor);
 		txtCidade.setEnabled(valor);
@@ -466,7 +465,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 			}
 			break;
 		case "Buscar":
-			buscarPessoa();
+			buscar();
 			break;
 
 		default:
@@ -475,7 +474,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	}
 
-	private void buscarPessoa() {
+	public void buscar() {
 		JFrmListaPessoa prod = new JFrmListaPessoa("Escolher");
 		prod.setModal(true);
 		prod.setVisible(true);
@@ -487,15 +486,15 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		
 	}
 
-	private void salvar() {
+	public void salvar() {
 		Imovel imovel = new Imovel();
 		if (imovelParaAlterar != null) {
 			System.out.println(txtId.getText());
 			imovel.setId(Integer.parseInt(txtId.getText()));
 		}
 		
-		imovel.setValor(Float.parseFloat(txtValor.getText()));
-		imovel.setValor(Float.parseFloat(txtValorAluguel.getText()));
+		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
+		imovel.setValor(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
 
 		imovel.setCodImovel(txtCodImovel.getText());
 		imovel.setTipo(String.valueOf(boxTipo.getSelectedItem()));
@@ -531,6 +530,9 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 		caracteristica.setNumeroSuits(boxSuites.getSelectedIndex());
 
 		imovel.setCaracteristicas(caracteristica);
+		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
+		imovel.setValorAluguel(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
+		imovel.setInformacoesComplementares(txtInformacoesAlocacao.getText());
 
 		banco.salvarOuAtualizarObjeto(imovel);
 		JOptionPane.showMessageDialog(contentPane, "Imovel salvo com sucesso!");
@@ -542,13 +544,13 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	}
 
-	private void liberarAlteracao() {
+	public void liberarAlteracao() {
 		btnSalvarAlterar.setToolTipText("Salvar");
 		txtEnable(true);
 
 	}
 
-	private void limparTxt() {
+	public void limparTxt() {
 		txtId.setText("");
 		txtValor.setText("");
 		txtValorAluguel.setText("");
