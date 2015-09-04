@@ -41,7 +41,7 @@ public class Pessoa {
 	@Column(name = "email",length=80, nullable=true, unique=true)
 	private String email;
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Date dataNascimento;
 	@Column(name = "observacao",length=80, nullable=true, unique=true)
 	private String observacao;

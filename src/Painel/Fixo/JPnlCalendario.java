@@ -33,11 +33,12 @@ public class JPnlCalendario extends JPanel {
 	public JPnlCalendario() {
 	
 		setBorder((Border) new LineBorder(new Color(0, 0, 0)));
-		setBounds(0, 0, 260, 190);
+		setBounds(11, 11,  320, 240);
 		setLayout(null);
 	
 	JCalendar calendario = new JCalendar();
-	calendario.setSize(260, 190);
+	calendario.setBorder(new LineBorder(new Color(0, 0, 0)));
+	calendario.setSize(320, 240);
 	calendario.setWeekOfYearVisible(false);
 	add(calendario);
 	

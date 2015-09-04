@@ -73,7 +73,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 					// SmartLookAndFeel.setCurrentTheme(props);
 
 					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+							.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 					JFrmPrincipal frame = new JFrmPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -131,10 +131,10 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 		btnImveis.setBounds(10, 115, 250, 23);
 		panelComandas.add(btnImveis);
 
-		JPanel panelCalendario = new JPnlCalendario();
-		panelCalendario.setBounds(5, 220, 260, 190);
-		panelComandas.add(panelCalendario);
-		panelCalendario.setLayout(null);
+//		JPanel panelCalendario = new JPnlCalendario();
+//		panelCalendario.setBounds(5, 220, 260, 190);
+//		panelComandas.add(panelCalendario);
+//		panelCalendario.setLayout(null);
 
 		JButton btnContratosEmVigor = new JButton("Contratos em Vigor");
 		btnContratosEmVigor.setBounds(10, 150, 250, 23);

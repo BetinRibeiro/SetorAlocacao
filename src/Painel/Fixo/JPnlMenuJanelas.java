@@ -12,12 +12,18 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import Janela.Cadastro.*;
-import Janela.Lista.FrmListaCaptacao;
+import Janela.Lista.JFrmListaAtendente;
+import Janela.Lista.JFrmListaCaptacao;
 import Janela.Lista.JFrmListaImoveis;
 import Janela.Lista.JFrmListaPessoa;
 
 @SuppressWarnings("serial")
 public class JPnlMenuJanelas extends JPanel implements ActionListener {
+
+	private JMenuItem opConsultaAtendente;
+	private JMenuItem opConsultaCaptao;
+	private JMenuItem opCaptacao;
+	private JMenuItem opCadastroAtendente;
 
 	/**
 	 * Create the panel.
@@ -55,10 +61,17 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		JMenu menuRelatrio = new JMenu("Relat\u00F3rio");
 		menuBar.add(menuRelatrio);
 		
-		JMenuItem opCaptacao = new JMenuItem("Capta\u00E7\u00E3o");
+		
+		 opCadastroAtendente = new JMenuItem("Cadastro Atendente");
+		menuCadatro.add(opCadastroAtendente);
+		
+		opCaptacao = new JMenuItem("Capta\u00E7\u00E3o");
 		menuCadatro.add(opCaptacao);
 		
-		JMenuItem opConsultaCaptao = new JMenuItem("Consulta Capta\u00E7\u00E3o");
+		opConsultaAtendente = new JMenuItem("Consulta Atendente");
+		menuConsulta.add(opConsultaAtendente);
+		
+		 opConsultaCaptao = new JMenuItem("Consulta Capta\u00E7\u00E3o");
 		menuConsulta.add(opConsultaCaptao);
 		
 
@@ -75,7 +88,10 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		opCaptacao.setActionCommand("CAD_CAPT");
 		opConsultaCaptao.addActionListener(this);
 		opConsultaCaptao.setActionCommand("CONS_CAPT");
-		
+		opCadastroAtendente.addActionListener(this);
+		opCadastroAtendente.setActionCommand("CAD_ATEN");
+		opConsultaAtendente.addActionListener(this);
+		opConsultaAtendente.setActionCommand("CONS_ATEN");
 		
 
 	}
@@ -108,8 +124,15 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 			captacaoCliente.setVisible(true);
 			break;
 		case "CONS_CAPT":
-			FrmListaCaptacao listaCaptacao = new FrmListaCaptacao("");
+			JFrmListaCaptacao listaCaptacao = new JFrmListaCaptacao("");
 			listaCaptacao.setVisible(true);
+			break;
+		case "CAD_ATEN":
+			JFrmCadastroAtendente cadastroAtendente = new JFrmCadastroAtendente(null);
+			cadastroAtendente.setVisible(true);
+		case "CONS_ATEN":
+			JFrmListaAtendente consultaAtendente = new JFrmListaAtendente("");
+			consultaAtendente.setVisible(true);
 			break;
 
 		default:

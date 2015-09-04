@@ -15,13 +15,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import Bin.Captacao.Captacao;
-import Janela.Cadastro.JFrmCaptacao;
+import Bin.Pessoa.Atendente;
+import Janela.Cadastro.JFrmCadastroAtendente;
 import Persistence.Dao;
-import TableModel.TMCaptacao;
+import TableModel.TMAtendente;
 
 @SuppressWarnings("serial")
-public class FrmListaCaptacao extends JDialog implements ActionListener {
+public class JFrmListaAtendente extends JDialog implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField txtNomeBusca;
@@ -29,17 +29,17 @@ public class FrmListaCaptacao extends JDialog implements ActionListener {
 	private JButton btnSair;
 	private JButton btnAlterar;
 	private Dao banco = new Dao();
-	private TMCaptacao model = new TMCaptacao();
+	private TMAtendente model = new TMAtendente();
 	private int a;
-	private JTable tableCaptacao;
-	private Captacao Captacao=null;
+	private JTable tableAtendente;
+	private Atendente Atendente=null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			FrmListaCaptacao dialog = new FrmListaCaptacao("");
+			JFrmListaAtendente dialog = new JFrmListaAtendente("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -51,8 +51,8 @@ public class FrmListaCaptacao extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 * @param escolher 
 	 */
-	public FrmListaCaptacao(String escolher) {
-		setTitle("Consulta de Classifica\u00E7\u00E3o dos Captacaos da Empresa");
+	public JFrmListaAtendente(String escolher) {
+		setTitle("Consulta de Classifica\u00E7\u00E3o dos Atendentes da Empresa");
 		setType(Type.UTILITY);
 		// setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 427);
@@ -70,23 +70,23 @@ public class FrmListaCaptacao extends JDialog implements ActionListener {
 		scrollPane.setBounds(0, 0, 574, 300);
 		panel.add(scrollPane);
 
-		tableCaptacao = new JTable(model);
+		tableAtendente = new JTable(model);
 
 		// tabela com colunas fixasv
-		tableCaptacao.getTableHeader().setReorderingAllowed(false);
+		tableAtendente.getTableHeader().setReorderingAllowed(false);
 		// tamanho especifico da coluna
-//		tableCaptacao.getColumn("nome").setPreferredWidth(350);
+//		tableAtendente.getColumn("nome").setPreferredWidth(350);
 
 		// seleciona apenas uma linha
-		tableCaptacao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(tableCaptacao);
+		tableAtendente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(tableAtendente);
 
 		txtNomeBusca = new JTextField();
 		txtNomeBusca.setBounds(129, 10, 260, 20);
 		contentPane.add(txtNomeBusca);
 		txtNomeBusca.setColumns(10);
 
-		JLabel lblNome = new JLabel("Nome Captacao");
+		JLabel lblNome = new JLabel("Nome Atendente");
 		lblNome.setBounds(10, 10, 97, 20);
 		contentPane.add(lblNome);
 
@@ -143,36 +143,36 @@ public class FrmListaCaptacao extends JDialog implements ActionListener {
 
 
 	private void retorno() {
-		setCaptacao((Captacao) banco.buscarPorId(Captacao.class, (Integer) tableCaptacao.getValueAt(
-				tableCaptacao.getSelectedRow(), 0)));
-	getCaptacao();
+		setAtendente((Atendente) banco.buscarPorId(Atendente.class, (Integer) tableAtendente.getValueAt(
+				tableAtendente.getSelectedRow(), 0)));
+	getAtendente();
 	dispose();
 		
 	}
 
-	public void setCaptacao(Captacao Captacao) {
-		this.Captacao = Captacao;
+	public void setAtendente(Atendente Atendente) {
+		this.Atendente = Atendente;
 		
 	}
-	public Captacao getCaptacao() {
-		return Captacao;
+	public Atendente getAtendente() {
+		return Atendente;
 		
 	}
 
 	private void Detalhe() {
 //		try {
 
-			Captacao Captacao = (Captacao) banco.buscarPorId(
-					Captacao.class,
-					(Integer) tableCaptacao.getValueAt(
-							tableCaptacao.getSelectedRow(), 0));
-			JFrmCaptacao c = new JFrmCaptacao(Captacao);
+			Atendente Atendente = (Atendente) banco.buscarPorId(
+					Atendente.class,
+					(Integer) tableAtendente.getValueAt(
+							tableAtendente.getSelectedRow(), 0));
+			JFrmCadastroAtendente c = new JFrmCadastroAtendente(Atendente);
 			txtNomeBusca.setText("");
 			model.removeTudo();
 			c.setVisible(true);
 //		} catch (Exception e) {
 //			JOptionPane.showMessageDialog(contentPane,
-//					"ERRO ao alterar um Captacao.");
+//					"ERRO ao alterar um Atendente.");
 //		}
 	}
 
@@ -180,16 +180,16 @@ public class FrmListaCaptacao extends JDialog implements ActionListener {
 		try {
 			model.removeTudo();
 			a = 0;
-			List<?> lista = banco.BuscaNome(Captacao.class,
+			List<?> lista = banco.BuscaNome(Atendente.class,
 					txtNomeBusca.getText(), "nome");
 			for (int i = 0; i < lista.size(); i++) {
-				Captacao classif = (Captacao) lista.get(i);
+				Atendente classif = (Atendente) lista.get(i);
 				model.addRow(classif);
 				a = 1;
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(contentPane,
-					"ERRO ao buscar um Captacao.");
+					"ERRO ao buscar um Atendente.");
 		}
 		if (a == 0) {
 			btnAlterar.setEnabled(false);

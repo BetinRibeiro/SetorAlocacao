@@ -14,11 +14,13 @@
 		<mapping class="Bin.Pessoa.Pessoa" />
 		<mapping class="Bin.Pessoa.Filiacao" />
 		<mapping class="Bin.Pessoa.Telefone" />
+		<mapping class="Bin.Pessoa.Atendente" />
 		<mapping class="Bin.Endereco" />
 		<mapping class="Bin.Imovel.Caracteristica" />
 		<mapping class="Bin.Imovel.Escritura" />
 		<mapping class="Bin.Imovel.Imovel" />
 		<mapping class="Bin.Captacao.Captacao" />
+		<mapping class="Bin.Captacao.Visita" />
 
 	</session-factory>
 </hibernate-configuration>
