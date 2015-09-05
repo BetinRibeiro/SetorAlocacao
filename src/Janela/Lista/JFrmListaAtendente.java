@@ -180,8 +180,8 @@ public class JFrmListaAtendente extends JDialog implements ActionListener {
 		try {
 			model.removeTudo();
 			a = 0;
-			List<?> lista = banco.BuscaNome(Atendente.class,
-					txtNomeBusca.getText(), "nome");
+			List<?> lista = banco.BuscaNomeHabilitado(Atendente.class,
+					txtNomeBusca.getText(), "nome", true);
 			for (int i = 0; i < lista.size(); i++) {
 				Atendente classif = (Atendente) lista.get(i);
 				model.addRow(classif);

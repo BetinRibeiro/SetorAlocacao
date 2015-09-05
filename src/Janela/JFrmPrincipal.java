@@ -73,7 +73,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 					// SmartLookAndFeel.setCurrentTheme(props);
 
 					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+							.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 					JFrmPrincipal frame = new JFrmPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
