@@ -140,7 +140,6 @@ abstract class JFrmLista extends JDialog implements ActionListener {
 	
 	protected abstract void renomeando(String titulo, String nomeBusca);
 
-	
 	abstract void retorno();
 
 	public abstract void setObj(Object obj);

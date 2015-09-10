@@ -32,10 +32,7 @@ public class Pessoa {
 	private String estadoCivil;
 	@Column(name = "cargo",length=80, nullable=true, unique=false)
 	private String cargo;
-	@Column(name = "rg",length=10, nullable=true, unique=true)
-	private long rg;
-	@Column(name = "orgao_espedidor",length=10, nullable=true, unique=false)
-	private String orgaoEspedidor;
+	
 	@Column(name = "cpf",length=11, nullable=true, unique=true)
 	private long cpf;
 	@Column(name = "email",length=80, nullable=true, unique=true)
@@ -49,8 +46,7 @@ public class Pessoa {
 	private String escolaridade;
 	@Column(name = "sexo",length=80, nullable=true, unique=false)
 	private String sexo;
-	@Column(name = "uf_rg",length=2, nullable=true)
-	private String ufrg;
+	
 	@Column(name = "uf_naturalidade",length=2, nullable=true)
 	private String ufNaturalidade;
 	
@@ -59,17 +55,13 @@ public class Pessoa {
 	@Embedded
 	private Endereco end;
 	@Embedded
+	private Rg rg;
+	@Embedded
 	private Telefone telefone;
 	@Embedded
 	private Filiacao filiacao;
 	
 
-	public String getUfrg() {
-		return ufrg;
-	}
-	public void setUfrg(String ufrg) {
-		this.ufrg = ufrg;
-	}
 	
 	public String getUfNaturalidade() {
 		return ufNaturalidade;
@@ -112,18 +104,6 @@ public class Pessoa {
 	}
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-	public long getRg() {
-		return rg;
-	}
-	public void setRg(long rg) {
-		this.rg = rg;
-	}
-	public String getOrgaoEspedidor() {
-		return orgaoEspedidor;
-	}
-	public void setOrgaoEspedidor(String orgaoEspedidor) {
-		this.orgaoEspedidor = orgaoEspedidor;
 	}
 	public long getCpf() {
 		return cpf;
@@ -178,6 +158,12 @@ public class Pessoa {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	public Rg getRg() {
+		return rg;
+	}
+	public void setRg(Rg rg) {
+		this.rg = rg;
 	}
 
 	

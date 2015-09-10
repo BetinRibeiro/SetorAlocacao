@@ -10,17 +10,30 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
-
+		<!-- Declaração do mapeamento da classe pessoa e classes auxiliares -->
 		<mapping class="Bin.Pessoa.Pessoa" />
 		<mapping class="Bin.Pessoa.Filiacao" />
 		<mapping class="Bin.Pessoa.Telefone" />
+		<mapping class="Bin.Pessoa.Rg" />
+		
+		
+		<!-- Declaração do mapeamento da classe pessoa e classes auxiliares -->
 		<mapping class="Bin.Pessoa.Atendente" />
+		
+		<!-- Declaração do mapeamento da classe endereço que contem tanto no imovel quanto nas pessoas -->
 		<mapping class="Bin.Endereco" />
+		
+		<!-- Declaração do mapeamento da classe imovel e classes auxiliares -->
 		<mapping class="Bin.Imovel.Caracteristica" />
 		<mapping class="Bin.Imovel.Escritura" />
 		<mapping class="Bin.Imovel.Imovel" />
+		
+		<!-- Declaração do mapeamento da classe Captação e visitas -->
 		<mapping class="Bin.Captacao.Captacao" />
 		<mapping class="Bin.Captacao.Visita" />
+		
+		<!-- Declaração do mapeamento da classe Erro para guardar erros ocorridos -->
+		<mapping class="Testes.Erro" />
 
 	</session-factory>
 </hibernate-configuration>

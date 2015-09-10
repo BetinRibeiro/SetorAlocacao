@@ -2,6 +2,9 @@ package Janela.Lista;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -14,11 +17,23 @@ import Janela.Cadastro.JFrmCaptacao;
 import Persistence.Dao;
 import TableModel.TMCaptacao;
 
+/**
+ * JFrmListaCaptacao lista as captações nesse caso lista quando se pesquisa alguma captação
+ * @author Rogoberto
+ *
+ */
+
 public class JFrmListaCaptacao extends JFrmLista implements ActionListener {
 
 	private Dao banco = new Dao();
 	private TMCaptacao model = new TMCaptacao();
 	private Captacao Captacao = null;
+	
+	/**
+	 * essa formatação será simplesmente para converter datas no formato em que
+	 * o banco entende
+	 */
+	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	
 	//TODO retirar esse metodo estatico pois não ha necessidade 
 	public static void main(String[] args) {
@@ -45,7 +60,9 @@ public class JFrmListaCaptacao extends JFrmLista implements ActionListener {
 		tableObjeto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tableObjeto);
 		renomeando("Lista de Captações", "Nome");
+		buscar();
 	}
+
 
 	@Override
 	void retorno() {

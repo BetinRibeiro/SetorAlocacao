@@ -2,23 +2,16 @@ package Janela.Cadastro;
 
 import java.awt.EventQueue;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import javax.swing.JComboBox;
 
@@ -27,14 +20,19 @@ import com.toedter.calendar.JDateChooser;
 import Bin.Endereco;
 import Bin.Pessoa.Filiacao;
 import Bin.Pessoa.Pessoa;
+import Bin.Pessoa.Rg;
 import Bin.Pessoa.Telefone;
 import Persistence.*;
 
+/**
+ *  JFrmCadastroPessoa cadastro da Pessoa view que cadastra
+ * ou altera uma Pessoa
+ * @author Rogoberto
+ *
+ */
 @SuppressWarnings("serial")
-public class JFrmCadastroPessoa extends JDialog implements ActionListener {
+public class JFrmCadastroPessoa extends JFrmCadastro {
 
-	// Painel principal onde tudo é aberto aqui
-	private JPanel contentPane;
 
 	// Todas as caixas de texto são declaradas como globais
 	private JTextField txtId;
@@ -56,13 +54,13 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	private JTextField txtPai;
 
 	// box's que carregam valores fixos nada aqui é carregado do banco de dados
-	private JComboBox boxSexo;
-	private JComboBox boxEscola;
-	private JComboBox boxEstadoCivil;
-	private JComboBox boxUfEnd;
-	private JComboBox boxUfRg;
-	private JComboBox boxUFNaturali;
-	private JComboBox boxOrgaoExpedidor;
+	private JComboBox<String> boxSexo;
+	private JComboBox<String> boxEscola;
+	private JComboBox<String> boxEstadoCivil;
+	private JComboBox<String> boxUfEnd;
+	private JComboBox<String> boxUfRg;
+	private JComboBox<String> boxUFNaturali;
+	private JComboBox<String> boxOrgaoExpedidor;
 
 	// estrutura que carrega DATE
 	private JDateChooser dtData;
@@ -70,11 +68,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	// instancia da classe dao que eu chamei de banco
 	private Dao banco = new Dao();
 
-	// esta variavel serve para formatar data do modo como colocamos no banco de
-	// dados
-	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	private JButton btnSalvarAlterar;
-	private JButton btnCancelarDeletar;
 
 	// esta variavel quando não esta nula obotão salvar fica com o nome Alterar
 	// e faz uma pesquisa preenchendo os valores dos campos com os de uma pessoa
@@ -128,15 +121,9 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 	 * 
 	 * @param idFuncionario
 	 */
-	public JFrmCadastroPessoa(Pessoa pessoa) {
+	public JFrmCadastroPessoa(Object obj) {
+		super(obj);
 		setTitle("Cadastro de Pessoa");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 486);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		setAlwaysOnTop(true);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -197,11 +184,11 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		txtCpf.setBounds(380, 75, 203, 20);
 		panel.add(txtCpf);
 
-		boxEstadoCivil = new JComboBox(estadoCivil);
+		boxEstadoCivil = new JComboBox<String>(estadoCivil);
 		boxEstadoCivil.setBounds(380, 170, 203, 20);
 		panel.add(boxEstadoCivil);
 
-		boxEscola = new JComboBox(escolaridade);
+		boxEscola = new JComboBox<String>(escolaridade);
 		boxEscola.setBounds(380, 120, 203, 20);
 		panel.add(boxEscola);
 
@@ -209,7 +196,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		lblSexo.setBounds(593, 150, 71, 20);
 		panel.add(lblSexo);
 
-		boxSexo = new JComboBox(sexo);
+		boxSexo = new JComboBox<String>(sexo);
 		boxSexo.setBounds(593, 170, 166, 20);
 		panel.add(boxSexo);
 
@@ -251,7 +238,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		lblOrgo.setBounds(224, 100, 83, 14);
 		panel.add(lblOrgo);
 
-		boxOrgaoExpedidor = new JComboBox(orgao);
+		boxOrgaoExpedidor = new JComboBox<String>(orgao);
 		boxOrgaoExpedidor.setBounds(223, 120, 84, 20);
 		panel.add(boxOrgaoExpedidor);
 
@@ -301,7 +288,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		panel.add(txtCidade);
 		txtCidade.setColumns(10);
 
-		boxUfEnd = new JComboBox(uf);
+		boxUfEnd = new JComboBox<String>(uf);
 		boxUfEnd.setBounds(309, 310, 60, 20);
 		panel.add(boxUfEnd);
 
@@ -345,7 +332,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		txtMae.setBounds(390, 361, 369, 20);
 		panel.add(txtMae);
 
-		boxUFNaturali = new JComboBox(uf);
+		boxUFNaturali = new JComboBox<String>(uf);
 		boxUFNaturali.setBounds(523, 220, 60, 20);
 		panel.add(boxUFNaturali);
 
@@ -353,7 +340,7 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		lblUfCidade.setBounds(523, 205, 60, 14);
 		panel.add(lblUfCidade);
 
-		boxUfRg = new JComboBox(uf);
+		boxUfRg = new JComboBox<String>(uf);
 		boxUfRg.setBounds(310, 120, 60, 20);
 		panel.add(boxUfRg);
 
@@ -376,82 +363,16 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 		limparTxt();
 
-		// quando a pessoa for nula será para cadastrar uma pessoa quando ela
-		// não for quer dizer que será feita uma alteração da pessoa que foi
-		// passada como parametro para isso temos mudar o texto do
-		// btnSalvarAlterar para alterar, e ele vai ter uma função de
-		// desbloquear as caixas de texto serão bloqueadas, nem sempre a pessoa
-		// quer fazer uma alteração as vezes quer só consultar os dados
-		if (pessoa != null) {
-
-			btnSalvarAlterar.setText("Alterar");
-			btnCancelarDeletar.setToolTipText("Deletar");
-			inserir(pessoa);
-			txtEnable(false);
-		}
-
-		// aqui vou adicionar um observador dos botões para que quando um deles
-		// for clicado a ação dele seja enviada para o metodo actionPerformed
-		btnCancelarDeletar.addActionListener(this);
-		btnSalvarAlterar.addActionListener(this);
-		pessoaParaAlterar=pessoa;
-
 	}
-
-	
-
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String acao = e.getActionCommand();
-
-		switch (acao) {
-		case "Alterar":
-			liberarAlteracao();
-			btnSalvarAlterar.setText("Salvar");
-			btnCancelarDeletar.setText("Cancelar");
-			break;
-		case "Salvar":
-			salvar();
-			btnSalvarAlterar.setText("Alterar");
-			btnCancelarDeletar.setText("Novo");
-			break;
-		case "Cancelar":
-			dispose();
-			break;
-		case "Novo":
-			txtEnable(true);
-			limparTxt();
-			btnSalvarAlterar.setText("Salvar");
-			btnCancelarDeletar.setText("Cancelar");
-			break;
-		case "Deletar":
-			int op = JOptionPane.showConfirmDialog(contentPane,
-					"Deseja realmente deletar?");
-			System.out.println(op);
-			if (op == 0) {
-				JOptionPane.showMessageDialog(contentPane,
-						"Você não tem autorização!");
-			}
-			break;
-
-		default:
-			break;
-		}
-
-	}
-
-		
-
-	
-
-
 
 	public void inserir(Object ob) {
+		try {
+			
+	
 		Pessoa pessoa = (Pessoa) ob;
 			txtId.setText(String.valueOf(pessoa.getId()));
 			txtNome.setText(pessoa.getNome());
-			txtRg.setText(String.valueOf(pessoa.getRg()));
+			txtRg.setText(String.valueOf(pessoa.getRg().getRg()));
 			txtCpf.setText(String.valueOf(pessoa.getCpf()));
 			txtLougradouroNumero.setText(pessoa.getEnd().getLougradouro());
 			txtBairro.setText(pessoa.getEnd().getBairro());
@@ -470,23 +391,29 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 			boxEstadoCivil.setSelectedItem(pessoa.getEstadoCivil());
 			boxSexo.setSelectedItem(pessoa.getSexo());
 			boxUfEnd.setSelectedItem(pessoa.getEnd().getUf());
-			boxUfRg.setSelectedItem(pessoa.getUfrg());
+			boxUfRg.setSelectedItem(pessoa.getRg().getUfrg());
 			boxUFNaturali.setSelectedItem(pessoa.getUfNaturalidade());
-			boxOrgaoExpedidor.setSelectedItem(pessoa.getOrgaoEspedidor());
+			boxOrgaoExpedidor.setSelectedItem(pessoa.getRg().getOrgaoEspedidor());
 			dtData.setDate(pessoa.getDataNascimento());
-
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
-	
-
 	public void salvar() {
+		try {
+			
+		
 		Pessoa pessoa = new Pessoa();
 		if (pessoaParaAlterar != null) {
 			System.out.println(txtId.getText());
 			pessoa.setId(Integer.parseInt(txtId.getText()));
 		}
+		Rg rg = new Rg();
+		
+		pessoa.setRg(rg);
 		pessoa.setNome(txtNome.getText());
-		pessoa.setRg(Long.valueOf(txtRg.getText()));
+		pessoa.getRg().setRg(Long.valueOf(txtRg.getText()));
 		pessoa.setCpf(Long.valueOf(txtCpf.getText()));
 		pessoa.setEmail(txtEmail.getText());
 		pessoa.setCargo(txtCargo.getText());
@@ -517,9 +444,9 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		pessoa.setEscolaridade(String.valueOf(boxEscola.getSelectedItem()));
 		pessoa.setEstadoCivil(String.valueOf(boxEstadoCivil.getSelectedItem()));
 		pessoa.setSexo(String.valueOf(boxSexo.getSelectedItem()));
-		pessoa.setUfrg(String.valueOf(boxUfRg.getSelectedItem()));
+		pessoa.getRg().setUfrg(String.valueOf(boxUfRg.getSelectedItem()));
 		pessoa.setUfNaturalidade(String.valueOf(boxUFNaturali.getSelectedItem()));
-		pessoa.setOrgaoEspedidor(String.valueOf(boxOrgaoExpedidor
+		pessoa.getRg().setOrgaoEspedidor(String.valueOf(boxOrgaoExpedidor
 				.getSelectedItem()));
 
 		pessoa.setDataNascimento(Date.valueOf(df.format(dtData.getDate())));
@@ -539,18 +466,27 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 		}
 		txtEnable(false);
 		btnCancelarDeletar.setToolTipText("Novo");
-
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 
 	public void liberarAlteracao() {
+		try {
+			
+		
 			btnSalvarAlterar.setToolTipText("Salvar");
 			txtEnable(true);
-
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 
 	public void limparTxt() {
+		try {
+			
 			txtId.setText("");
 			txtNome.setText("");
 			txtRg.setText("");
@@ -577,10 +513,15 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 			boxOrgaoExpedidor.setSelectedIndex(62);
 			dtData.setDate(new java.util.Date());
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 
 	public void txtEnable(boolean valor) {
+		try {
+		
 			txtNome.setEnabled(valor);
 			txtRg.setEnabled(valor);
 			txtCpf.setEnabled(valor);
@@ -605,8 +546,10 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 			boxUFNaturali.setEnabled(valor);
 			boxOrgaoExpedidor.setEnabled(valor);
 			dtData.setEnabled(valor);
-
-
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 }

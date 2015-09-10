@@ -47,8 +47,7 @@ public class Captacao {
 	@Column(name = "interesse", length = 35, nullable = true)
 	private String interesse;
 
-	@Column(name = "vlr_med", nullable = true)
-	private float valorMedio;
+
 
 	@Column(name = "observacao", length = 35, nullable = true)
 	private String observacao;
@@ -85,22 +84,6 @@ public class Captacao {
 
 	public void setInteresse(String interesse) {
 		this.interesse = interesse;
-	}/**
-	 * retorna o ValorMedio do endereço
-	 * 
-	 * @return float ValorMedio
-	 */
-
-	public float getValorMedio() {
-		return valorMedio;
-	}/**
-	 * Altera o ValorMedio do endereço
-	 * 
-	 * @param ValorMedio
-	 */
-
-	public void setValorMedio(float valorMedio) {
-		this.valorMedio = valorMedio;
 	}
 	/**
 	 * retorna o Id do endereço

@@ -9,6 +9,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import Bin.Captacao.Captacao;
 import Persistence.HibernateUtil;
 
 public class Dao {
@@ -163,4 +164,5 @@ public class Dao {
 						sessao.close();
 					}
 	}
+
 }
