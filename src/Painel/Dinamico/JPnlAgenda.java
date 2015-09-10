@@ -328,7 +328,7 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 		capt.setModal(true);
 		capt.setVisible(true);
 
-		Imovel p = capt.getImovel();
+		Imovel p = (Imovel) capt.getObj();
 		txtIdImovel.setText(String.valueOf(p.getId()));
 		txtNomeImovel.setText(String.valueOf(p.getEnd().getBairro()));
 		capt.dispose();
@@ -340,7 +340,7 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 		capt.setModal(true);
 		capt.setVisible(true);
 
-		Captacao p = capt.getCaptacao();
+		Captacao p = (Captacao) capt.getObj();
 		txtIdCaptacao.setText(String.valueOf(p.getId()));
 		txtNomeCaptacao.setText(String.valueOf(p.getNome()));
 		capt.dispose();
@@ -352,7 +352,7 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 		capt.setModal(true);
 		capt.setVisible(true);
 
-		Atendente p = capt.getAtendente();
+		Atendente p = (Atendente) capt.getObj();
 		txtIdAtendente.setText(String.valueOf(p.getId()));
 		txtNomeAtendente.setText(String.valueOf(p.getNome()));
 		capt.dispose();

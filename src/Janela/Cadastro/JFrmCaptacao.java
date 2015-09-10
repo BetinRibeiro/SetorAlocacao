@@ -29,7 +29,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel {
+public class JFrmCaptacao extends JDialog implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField txtId;
@@ -66,7 +66,7 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 	 */
 	public JFrmCaptacao(Captacao captacao) {
 		setTitle("Capta\u00E7\u00E3o de Clientes");
-		setBounds(100, 100, 350, 511);
+		setBounds(100, 100, 671, 511);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,7 +74,7 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(10, 47, 314, 415);
+		panel.setBounds(10, 47, 635, 415);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -90,11 +90,11 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 
 		txtNumTelefone = new JTextField();
 		txtNumTelefone.setColumns(10);
-		txtNumTelefone.setBounds(10, 150, 135, 20);
+		txtNumTelefone.setBounds(338, 70, 135, 20);
 		panel.add(txtNumTelefone);
 
 		 boxInteresse = new JComboBox(interesse);
-		boxInteresse.setBounds(10, 110, 287, 20);
+		boxInteresse.setBounds(338, 30, 287, 20);
 		panel.add(boxInteresse);
 
 		JLabel lblNomeCompleto = new JLabel("Nome Completo");
@@ -107,11 +107,11 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		panel.add(txtNome);
 
 		JLabel lblValorMaximo = new JLabel("Numero Telefone");
-		lblValorMaximo.setBounds(10, 130, 108, 20);
+		lblValorMaximo.setBounds(338, 50, 108, 20);
 		panel.add(lblValorMaximo);
 
 		JLabel lblTipo = new JLabel("Interesse");
-		lblTipo.setBounds(10, 90, 84, 20);
+		lblTipo.setBounds(338, 10, 84, 20);
 		panel.add(lblTipo);
 
 		dtCadastro = new JDateChooser(new java.util.Date());
@@ -124,21 +124,21 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		panel.add(lblDataCadastro);
 
 		JLabel lblValorMaximo_1 = new JLabel("Valor M\u00E9dio");
-		lblValorMaximo_1.setBounds(162, 130, 108, 20);
+		lblValorMaximo_1.setBounds(490, 50, 108, 20);
 		panel.add(lblValorMaximo_1);
 
 		txtValorMed = new JTextField();
 		txtValorMed.setColumns(10);
-		txtValorMed.setBounds(162, 150, 135, 20);
+		txtValorMed.setBounds(490, 70, 135, 20);
 		panel.add(txtValorMed);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 190, 287, 178);
+		panel_1.setBounds(10, 121, 615, 247);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 287, 178);
+		scrollPane.setBounds(0, 0, 615, 247);
 		panel_1.add(scrollPane);
 
 		 txtDescricao = new JTextArea();
@@ -147,7 +147,7 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		scrollPane.setViewportView(txtDescricao);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setBounds(10, 170, 108, 20);
+		lblDescrio.setBounds(10, 90, 108, 20);
 		panel.add(lblDescrio);
 
 		 btnCancelarDeletar = new JButton("Cancelar");
@@ -164,7 +164,7 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		
 		txtObservacao = new JTextField();
 		txtObservacao.setEnabled(false);
-		txtObservacao.setBounds(10, 11, 314, 20);
+		txtObservacao.setBounds(10, 11, 635, 20);
 		contentPane.add(txtObservacao);
 		txtObservacao.setColumns(10);
 		setLocationRelativeTo(null);
@@ -243,7 +243,6 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 
 	
 
-	@Override
 	public void inserir(Object ob) {
 		Captacao captacao = (Captacao) ob;
 			txtId.setText(String.valueOf(captacao.getId()));
@@ -261,7 +260,6 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		
 	}
 
-	@Override
 	public void salvar() {
 			Captacao captacao = new Captacao();
 			if (captacaoParaAlterar != null) {
@@ -298,14 +296,12 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		
 	}
 
-	@Override
 	public void liberarAlteracao() {
 			btnSalvarAlterar.setToolTipText("Salvar");
 			txtEnable(true);
 
 	}
 
-	@Override
 	public void limparTxt() {
 			txtId.setText("");
 			txtNome.setText("");
@@ -319,7 +315,6 @@ public class JFrmCaptacao extends JDialog implements ActionListener,Cadastravel 
 		
 	}
 
-	@Override
 	public void txtEnable(boolean valor) {
 			txtNome.setEnabled(valor);
 			txtNumTelefone.setEnabled(valor);

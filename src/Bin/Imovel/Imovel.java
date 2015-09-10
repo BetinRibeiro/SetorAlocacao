@@ -32,24 +32,16 @@ public class Imovel {
 	private Endereco end;
 	@Embedded
 	private Caracteristica caracteristicas;
-	@Column(name = "tipo",length=50, nullable=true)
-	private String tipo;
-	@Column(name = "finalidade",length=50, nullable=true)
-	private String finalidade;
 	@Column(name = "valor",length=11, nullable=true)
 	private float valor;
 	@Column(name = "valor_aluguel",length=11, nullable=true)
 	private float valorAluguel;
-	@Column(name = "info_complementar",length=80, nullable=true)
-	private String informacoesComplementares;
+	@Column(name = "informacoes",length=80, nullable=true)
+	private String informacoes;
+	@Column(name = "disponivel", nullable=true)
+	private boolean disponivel;
 	
 	
-	public String getInformacoesComplementares() {
-		return informacoesComplementares;
-	}
-	public void setInformacoesComplementares(String informacoesComplementares) {
-		this.informacoesComplementares = informacoesComplementares;
-	}
 	public int getId() {
 		return id;
 	}
@@ -86,18 +78,6 @@ public class Imovel {
 	public void setCaracteristicas(Caracteristica caracteristicas) {
 		this.caracteristicas = caracteristicas;
 	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	public String getFinalidade() {
-		return finalidade;
-	}
-	public void setFinalidade(String finalidade) {
-		this.finalidade = finalidade;
-	}
 	public float getValor() {
 		return valor;
 	}
@@ -110,13 +90,17 @@ public class Imovel {
 	public void setValorAluguel(float valorAluguel) {
 		this.valorAluguel = valorAluguel;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getInformacoes() {
+		return informacoes;
+	}
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
+	}
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
 	
 }

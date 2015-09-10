@@ -146,7 +146,7 @@ public class Dao {
 			}
 	}
 
-	public List<?> BuscaNomeHabilitado(Class<Bin.Pessoa.Atendente> classe,
+	public List<?> BuscaNomeHabilitado(Class<?>  classe,
 			String nomeBuscar, String coluna, boolean b) {
 		 try {
 				sessao = HibernateUtil.getSession().openSession();

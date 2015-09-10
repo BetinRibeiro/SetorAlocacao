@@ -11,6 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import Bin.Imovel.Imovel;
+/**
+ * Um
+ * <code>Contrato</code> é o acordo fixado entre partes
+ * 
+ * @author Rogoberto Ribeiro
+ * @version 1.0
+ *
+ * @see Imovel
+ * @see Pessoa
+ * @see Clausula
+ */
 @Entity
 @Table(name = "contrato")
 public class Contrato {

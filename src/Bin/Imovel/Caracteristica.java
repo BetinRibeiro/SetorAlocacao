@@ -4,52 +4,102 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
-//Aparentemente terminado TODO
+/**
+ * Um
+ * <code>Caracteristica</code> é o conjunto de atributos que possui o imovel
+ * 
+ * @author Rogoberto Ribeiro
+ * @version 1.0
+ *
+ */
 @Embeddable
 @Table(name = "informacaoes_imovel")
-public class Caracteristica {
-	@Column(name = "numero_comodos",length = 2, nullable = true)
-	private int numeroComodos;
-	@Column(name = "numero_garagens",length = 2, nullable = true)
-	private int numeroGaragens;
-	@Column(name = "numero_suits",length = 2, nullable = true)
-	private int numeroSuits;
-	@Column(name = "numero_banheiros",length=2, nullable=true)
-	private int numeroBanheiros;
-	@Column(name = "informacaoes",length=200, nullable=true)
-	private String informacaoes;
+public class Caracteristica{
+	@Column(name = "quantidade_garagem",length = 2, nullable = true)
+	private int quantidadeGaragem;
+	@Column(name = "quantidade_quarto",length = 2, nullable = true)
+	private int quantidadeQuarto;
+	@Column(name = "quantidade_banheiro",length = 2, nullable = true)
+	private int quantidadeBanheiro;
+	@Column(name = "quantidade_sala",length=2, nullable=true)
+	private int quantidadeSala;
+	@Column(name = "quantidade_quintal",length=2, nullable=true)
+	private int quantidadeQuintal;
+	@Column(name = "quantidade_cozinha",length=2, nullable=true)
+	private int quantidadeCozinha;
+	@Column(name = "quantidade_suit",length=2, nullable=true)
+	private int quantidadeSuit;
+	@Column(name = "quantidade_comodos",length=2, nullable=true)
+	private int quantidadeComodos;
+	@Column(name = "tipo",length=200, nullable=true)
+	private String tipo;
+	@Column(name = "finalidade",length=200, nullable=true)
+	private String finalidade;
 	
 	
-	public int getNumeroComodos() {
-		return numeroComodos;
+	
+	public int getQuantidadeGaragem() {
+		return quantidadeGaragem;
 	}
-	public void setNumeroComodos(int numeroComodos) {
-		this.numeroComodos = numeroComodos;
+	public void setQuantidadeGaragem(int quantidadeGaragem) {
+		this.quantidadeGaragem = quantidadeGaragem;
 	}
-	public int getNumeroGaragens() {
-		return numeroGaragens;
+	public int getQuantidadeQuarto() {
+		return quantidadeQuarto;
 	}
-	public void setNumeroGaragens(int numeroGaragens) {
-		this.numeroGaragens = numeroGaragens;
+	public void setQuantidadeQuarto(int quantidadeQuarto) {
+		this.quantidadeQuarto = quantidadeQuarto;
 	}
-	public int getNumeroSuits() {
-		return numeroSuits;
+	public int getQuantidadeBanheiro() {
+		return quantidadeBanheiro;
 	}
-	public void setNumeroSuits(int numeroSuits) {
-		this.numeroSuits = numeroSuits;
+	public void setQuantidadeBanheiro(int quantidadeBanheiro) {
+		this.quantidadeBanheiro = quantidadeBanheiro;
 	}
-	public int getNumeroBanheiros() {
-		return numeroBanheiros;
+	public int getQuantidadeSala() {
+		return quantidadeSala;
 	}
-	public void setNumeroBanheiros(int numeroBanheiros) {
-		this.numeroBanheiros = numeroBanheiros;
+	public void setQuantidadeSala(int quantidadeSala) {
+		this.quantidadeSala = quantidadeSala;
 	}
-	public String getInformacaoes() {
-		return informacaoes;
+	public int getQuantidadeQuintal() {
+		return quantidadeQuintal;
 	}
-	public void setInformacaoes(String informacaoes) {
-		this.informacaoes = informacaoes;
+	public void setQuantidadeQuintal(int quantidadeQuintal) {
+		this.quantidadeQuintal = quantidadeQuintal;
 	}
+	public int getQuantidadeCozinha() {
+		return quantidadeCozinha;
+	}
+	public void setQuantidadeCozinha(int quantidadeCozinha) {
+		this.quantidadeCozinha = quantidadeCozinha;
+	}
+	public int getQuantidadeSuit() {
+		return quantidadeSuit;
+	}
+	public void setQuantidadeSuit(int quantidadeSuit) {
+		this.quantidadeSuit = quantidadeSuit;
+	}
+	public int getQuantidadeComodos() {
+		return quantidadeComodos;
+	}
+	public void setQuantidadeComodos(int quantidadeComodos) {
+		this.quantidadeComodos = quantidadeComodos;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public String getFinalidade() {
+		return finalidade;
+	}
+	public void setFinalidade(String finalidade) {
+		this.finalidade = finalidade;
+	}
+	
+	
 	
 	
 

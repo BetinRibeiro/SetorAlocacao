@@ -29,7 +29,8 @@ import Bin.Pessoa.Pessoa;
 import Janela.Lista.JFrmListaPessoa;
 import Persistence.Dao;
 
-public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadastravel {
+public class JFrmCadastroImovel extends JDialog implements ActionListener
+		 {
 
 	/**
 	 * 
@@ -78,11 +79,11 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 			"MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO",
 			"RR", "RS", "SC", "SE", "SP", "TO" };
 	String[] tipo = { "Apartamento", "Casa", "Comercial", "Sala Comercial",
-			"Terreno", "Cadas em Condominio", "Ponto Comercial", "Duplex", "Loteamento",
-			"Repasse", "Lote em Condominio" };
+			"Terreno", "Cadas em Condominio", "Ponto Comercial", "Duplex",
+			"Loteamento", "Repasse", "Lote em Condominio" };
 
-	String[] numeros = { "0", "1", "2", "3", "4", "5", "6" , "7", "8", "9"};
-	String[] finalidade = { "Locação", "Venda"};
+	String[] numeros = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+	String[] finalidade = { "Locação", "Venda" };
 	private JTextField txtValor;
 	private JTextField txtValorAluguel;
 
@@ -112,7 +113,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 	 */
 	public JFrmCadastroImovel(Imovel imovel) {
 		setTitle("Cadastro de Im\u00F3vel");
-		setBounds(100, 100, 770, 475);
+		setBounds(100, 100, 775, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -122,7 +123,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(10, 11, 735, 381);
+		panel.setBounds(10, 11, 735, 406);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -158,7 +159,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		panel.add(txtNomeProprietario);
 
 		JLabel lblNomeDoProprietario = new JLabel("Nome do Proprietario");
-		lblNomeDoProprietario.setBounds(90, 100, 123, 14);
+		lblNomeDoProprietario.setBounds(90, 100, 146, 14);
 		panel.add(lblNomeDoProprietario);
 
 		JLabel lblCdigoDoProprietario = new JLabel("C\u00F3digo ");
@@ -185,7 +186,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 
 		txtCidadeCartorio = new JTextField();
 		txtCidadeCartorio.setColumns(10);
-		txtCidadeCartorio.setBounds(382, 70, 255, 20);
+		txtCidadeCartorio.setBounds(382, 70, 260, 20);
 		panel.add(txtCidadeCartorio);
 
 		JLabel lblCidadeDoCartorio = new JLabel("Cidade do Cartorio");
@@ -193,11 +194,11 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		panel.add(lblCidadeDoCartorio);
 
 		boxUfCartorio = new JComboBox(uf);
-		boxUfCartorio.setBounds(647, 70, 60, 20);
+		boxUfCartorio.setBounds(665, 70, 60, 20);
 		panel.add(boxUfCartorio);
 
 		JLabel lblUf = new JLabel("UF cartorio");
-		lblUf.setBounds(647, 55, 78, 14);
+		lblUf.setBounds(655, 55, 70, 14);
 		panel.add(lblUf);
 
 		txtLougradouro = new JTextField();
@@ -228,60 +229,60 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		txtCep.setColumns(10);
 
 		txtBairro = new JTextField();
-		txtBairro.setBounds(412, 160, 225, 20);
+		txtBairro.setBounds(412, 160, 245, 20);
 		panel.add(txtBairro);
 		txtBairro.setColumns(10);
 
 		JLabel lblBairro = new JLabel("Bairro");
-		lblBairro.setBounds(412, 145, 46, 14);
+		lblBairro.setBounds(412, 145, 70, 14);
 		panel.add(lblBairro);
 
 		boxUFEndereco = new JComboBox(uf);
-		boxUFEndereco.setBounds(647, 160, 58, 20);
+		boxUFEndereco.setBounds(667, 160, 58, 20);
 		panel.add(boxUFEndereco);
 
 		JLabel lblUfEndereo = new JLabel("UF Endere\u00E7o");
-		lblUfEndereo.setBounds(647, 145, 78, 14);
+		lblUfEndereo.setBounds(655, 145, 70, 14);
 		panel.add(lblUfEndereo);
 
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(411, 115, 89, 20);
 		panel.add(btnBuscar);
 
-		JLabel lblSuites = new JLabel("Suites");
-		lblSuites.setBounds(552, 190, 60, 14);
+		JLabel lblSuites = new JLabel("Banheiros");
+		lblSuites.setBounds(385, 232, 60, 14);
 		panel.add(lblSuites);
 
-		JLabel lblGaragens = new JLabel("Garagens");
-		lblGaragens.setBounds(482, 190, 60, 14);
+		JLabel lblGaragens = new JLabel("Quartos");
+		lblGaragens.setBounds(315, 232, 60, 14);
 		panel.add(lblGaragens);
 
-		JLabel lblComodos = new JLabel("C\u00F4modos");
-		lblComodos.setBounds(412, 190, 60, 14);
+		JLabel lblComodos = new JLabel("Garagem");
+		lblComodos.setBounds(245, 232, 60, 14);
 		panel.add(lblComodos);
 
 		boxComodos = new JComboBox(numeros);
-		boxComodos.setBounds(412, 205, 60, 20);
+		boxComodos.setBounds(245, 247, 60, 20);
 		panel.add(boxComodos);
 
 		boxGaragens = new JComboBox(numeros);
-		boxGaragens.setBounds(482, 205, 60, 20);
+		boxGaragens.setBounds(315, 247, 60, 20);
 		panel.add(boxGaragens);
 
 		boxSuites = new JComboBox(numeros);
-		boxSuites.setBounds(552, 205, 60, 20);
+		boxSuites.setBounds(385, 247, 60, 20);
 		panel.add(boxSuites);
 
-		JLabel lblBanheiros = new JLabel("Banheiros");
-		lblBanheiros.setBounds(622, 190, 60, 14);
+		JLabel lblBanheiros = new JLabel("Sala");
+		lblBanheiros.setBounds(455, 232, 60, 14);
 		panel.add(lblBanheiros);
 
 		boxBanheiros = new JComboBox(numeros);
-		boxBanheiros.setBounds(622, 205, 60, 20);
+		boxBanheiros.setBounds(455, 247, 60, 20);
 		panel.add(boxBanheiros);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 245, 715, 125);
+		scrollPane.setBounds(10, 278, 715, 117);
 		panel.add(scrollPane);
 
 		txtInformacoesCaracteristica = new JTextArea();
@@ -291,7 +292,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 
 		JLabel lblInformaesComplementares = new JLabel(
 				"Informa\u00E7\u00F5es Complementares");
-		lblInformaesComplementares.setBounds(10, 230, 173, 14);
+		lblInformaesComplementares.setBounds(10, 250, 173, 14);
 		panel.add(lblInformaesComplementares);
 
 		boxTipo = new JComboBox(tipo);
@@ -313,39 +314,66 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		chckbxDisponvel = new JCheckBox("Dispon\u00EDvel");
 		chckbxDisponvel.setBounds(610, 24, 97, 23);
 		panel.add(chckbxDisponvel);
-		
+
 		txtValor = new JTextField();
 		txtValor.setText("");
 		txtValor.setColumns(10);
 		txtValor.setBounds(510, 115, 90, 20);
 		panel.add(txtValor);
-		
+
 		JLabel lblValorImovel = new JLabel("Valor Imovel");
 		lblValorImovel.setBounds(510, 100, 93, 14);
 		panel.add(lblValorImovel);
-		
+
 		txtValorAluguel = new JTextField();
 		txtValorAluguel.setText("");
 		txtValorAluguel.setColumns(10);
 		txtValorAluguel.setBounds(612, 115, 90, 20);
 		panel.add(txtValorAluguel);
-		
+
 		JLabel lblValorAluguel = new JLabel("Valor Aluguel");
 		lblValorAluguel.setBounds(612, 100, 93, 14);
 		panel.add(lblValorAluguel);
+		
+		JComboBox comboBox = new JComboBox(numeros);
+//		comboBox.setSelectedIndex(0);
+		comboBox.setBounds(525, 247, 60, 20);
+		panel.add(comboBox);
+		
+		JLabel lblQuintal = new JLabel("Quintal");
+		lblQuintal.setBounds(525, 232, 60, 14);
+		panel.add(lblQuintal);
+		
+		JComboBox comboBox_1 = new JComboBox(numeros);
+//		comboBox_1.setSelectedIndex(0);
+		comboBox_1.setBounds(595, 247, 60, 20);
+		panel.add(comboBox_1);
+		
+		JLabel lblCozinha = new JLabel("Cozinha");
+		lblCozinha.setBounds(595, 232, 60, 14);
+		panel.add(lblCozinha);
+		
+		JComboBox comboBox_2 = new JComboBox(numeros);
+//		comboBox_2.setSelectedIndex(0);
+		comboBox_2.setBounds(665, 247, 60, 20);
+		panel.add(comboBox_2);
+		
+		JLabel lblSuits = new JLabel("Suits");
+		lblSuits.setBounds(665, 232, 60, 14);
+		panel.add(lblSuits);
 
 		btnCancelarDeletar = new JButton("Cancelar");
-		btnCancelarDeletar.setBounds(656, 403, 89, 23);
+		btnCancelarDeletar.setBounds(656, 428, 89, 23);
 		contentPane.add(btnCancelarDeletar);
 
 		txtInformacoesAlocacao = new JTextField();
 		txtInformacoesAlocacao.setEnabled(false);
 		txtInformacoesAlocacao.setColumns(10);
-		txtInformacoesAlocacao.setBounds(10, 403, 537, 23);
+		txtInformacoesAlocacao.setBounds(10, 428, 537, 23);
 		contentPane.add(txtInformacoesAlocacao);
 
 		btnSalvarAlterar = new JButton("Salvar");
-		btnSalvarAlterar.setBounds(557, 403, 89, 23);
+		btnSalvarAlterar.setBounds(557, 428, 89, 23);
 		contentPane.add(btnSalvarAlterar);
 		limparTxt();
 
@@ -374,7 +402,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 	public void inserir(Object ob) {
 		Imovel imovel = (Imovel) ob;
 		txtValor.setText(String.valueOf(imovel.getValor()).replace(",", "."));
-		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel()).replace(",", "."));
+		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel())
+				.replace(",", "."));
 		txtLougradouro.setText(imovel.getEnd().getLougradouro());
 		txtBairro.setText(imovel.getEnd().getBairro());
 		txtCidade.setText(imovel.getEnd().getCidade());
@@ -389,8 +418,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		txtNomeCartorio.setText(imovel.getEscritura().getNomeCartorio());
 		txtCidadeCartorio.setText(imovel.getEscritura().getCidadeCartorio());
 		txtInformacoesAlocacao.setText(imovel.getInformacoesComplementares());
-		txtInformacoesCaracteristica.setText(imovel
-				.getCaracteristicas().getInformacaoes());
+		txtInformacoesCaracteristica.setText(imovel.getCaracteristicas()
+				.getInformacaoes());
 
 		boxFinalidade.setSelectedItem(imovel.getFinalidade());
 		boxTipo.setSelectedItem(imovel.getTipo());
@@ -479,11 +508,11 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 		prod.setModal(true);
 		prod.setVisible(true);
 
-		Pessoa p = prod.getPessoa();
+		Pessoa p = (Pessoa) prod.getObj();
 		txtIdProprietario.setText(String.valueOf(p.getId()));
 		txtNomeProprietario.setText(String.valueOf(p.getNome()));
 		prod.dispose();
-		
+
 	}
 
 	public void salvar() {
@@ -492,9 +521,10 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 			System.out.println(txtId.getText());
 			imovel.setId(Integer.parseInt(txtId.getText()));
 		}
-		
+
 		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
-		imovel.setValor(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
+		imovel.setValor(Float.parseFloat(txtValorAluguel.getText().replace(",",
+				".")));
 
 		imovel.setCodImovel(txtCodImovel.getText());
 		imovel.setTipo(String.valueOf(boxTipo.getSelectedItem()));
@@ -531,17 +561,35 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener, Cadas
 
 		imovel.setCaracteristicas(caracteristica);
 		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
-		imovel.setValorAluguel(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
+		imovel.setValorAluguel(Float.parseFloat(txtValorAluguel.getText()
+				.replace(",", ".")));
 		imovel.setInformacoesComplementares(txtInformacoesAlocacao.getText());
 
-		banco.salvarOuAtualizarObjeto(imovel);
-		JOptionPane.showMessageDialog(contentPane, "Imovel salvo com sucesso!");
-		if (!txtId.getText().equalsIgnoreCase("")) {
-			dispose();
-		}
-		txtEnable(false);
-		btnCancelarDeletar.setToolTipText("Novo");
+		if (imovel.getEnd().getCep() == null) {
+			JOptionPane.showMessageDialog(contentPane,
+					"O CEP é invalido, favor verificar novamente!",
+					"ERRO DE CEP", JOptionPane.INFORMATION_MESSAGE);
 
+		} else {
+
+			if (imovelParaAlterar != null) {
+				banco.salvarOuAtualizarObjeto(imovel);
+				JOptionPane.showMessageDialog(contentPane,
+						"Pessoa salva com sucesso!");
+				dispose();
+			} else {
+				banco.salvarObjeto(imovel);
+				txtId.setText(String.valueOf(imovel.getId()));
+			}
+
+			JOptionPane.showMessageDialog(contentPane,
+					"Pessoa salva com sucesso!");
+			if (!txtId.getText().equalsIgnoreCase("")) {
+
+				txtEnable(false);
+				btnCancelarDeletar.setToolTipText("Novo");
+			}
+		}
 	}
 
 	public void liberarAlteracao() {

@@ -82,7 +82,7 @@ public class TMImovel extends AbstractTableModel {
 		case 0:
 			return dados.get(linha).getId();
 		case 1:
-			return dados.get(linha).getTipo();
+			return dados.get(linha).getCaracteristicas().getTipo();
 		case 2:
 			return (dados.get(linha).getEnd().getBairro());
 

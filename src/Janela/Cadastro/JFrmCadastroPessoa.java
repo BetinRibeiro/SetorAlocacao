@@ -31,7 +31,7 @@ import Bin.Pessoa.Telefone;
 import Persistence.*;
 
 @SuppressWarnings("serial")
-public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadastravel {
+public class JFrmCadastroPessoa extends JDialog implements ActionListener {
 
 	// Painel principal onde tudo é aberto aqui
 	private JPanel contentPane;
@@ -447,7 +447,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadas
 
 
 
-	@Override
 	public void inserir(Object ob) {
 		Pessoa pessoa = (Pessoa) ob;
 			txtId.setText(String.valueOf(pessoa.getId()));
@@ -480,7 +479,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadas
 
 	
 
-	@Override
 	public void salvar() {
 		Pessoa pessoa = new Pessoa();
 		if (pessoaParaAlterar != null) {
@@ -545,7 +543,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadas
 		
 	}
 
-	@Override
 	public void liberarAlteracao() {
 			btnSalvarAlterar.setToolTipText("Salvar");
 			txtEnable(true);
@@ -553,7 +550,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadas
 		
 	}
 
-	@Override
 	public void limparTxt() {
 			txtId.setText("");
 			txtNome.setText("");
@@ -584,7 +580,6 @@ public class JFrmCadastroPessoa extends JDialog implements ActionListener, Cadas
 		
 	}
 
-	@Override
 	public void txtEnable(boolean valor) {
 			txtNome.setEnabled(valor);
 			txtRg.setEnabled(valor);

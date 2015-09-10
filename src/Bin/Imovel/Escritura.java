@@ -4,11 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
+/**
+ * Um
+ * <code>Escritura</code> são as informações juridico legal para encontrar o 
+ * imovel e seu respectivo cartorio no qual foi registrado
+ * 
+ * @author Rogoberto Ribeiro
+ * @version 1.0
+ *
+ */
 @Embeddable
 @Table(name = "escritura")
 public class Escritura {
 
-	// tenho que verificar se o numero que identifica a escritura contem letras - TODO
 	@Column(name = "numero_escritura",length = 20, nullable = true, unique=false)
 	private String numeroEscritura;
 	@Column(name = "nome_cartorio",length = 100, nullable = true)

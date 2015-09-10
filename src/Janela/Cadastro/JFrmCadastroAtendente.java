@@ -34,8 +34,8 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 
-public class JFrmCadastroAtendente extends JDialog implements ActionListener,
-		Cadastravel {
+public class JFrmCadastroAtendente extends JDialog implements ActionListener
+		 {
 
 	private JPanel contentPane;
 	private JTextField txtId;
@@ -252,7 +252,6 @@ public class JFrmCadastroAtendente extends JDialog implements ActionListener,
 
 	}
 
-	@Override
 	public void inserir(Object ob) {
 		Atendente atendente = (Atendente) ob;
 		txtId.setText(String.valueOf(atendente.getId()));
@@ -266,7 +265,6 @@ public class JFrmCadastroAtendente extends JDialog implements ActionListener,
 
 	}
 
-	@Override
 	public void salvar() {
 		String confirmacao;
 		Atendente atendente = new Atendente();
@@ -316,14 +314,12 @@ public class JFrmCadastroAtendente extends JDialog implements ActionListener,
 		}
 	}
 
-	@Override
 	public void liberarAlteracao() {
 		btnSalvarAlterar.setToolTipText("Salvar");
 		txtEnable(true);
 
 	}
 
-	@Override
 	public void limparTxt() {
 		txtId.setText("");
 		txtNome.setText("");
@@ -333,7 +329,6 @@ public class JFrmCadastroAtendente extends JDialog implements ActionListener,
 
 	}
 
-	@Override
 	public void txtEnable(boolean valor) {
 		txtNome.setEnabled(valor);
 		txtNumTelefone.setEnabled(valor);

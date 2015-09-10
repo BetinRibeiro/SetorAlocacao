@@ -4,9 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
-//Aparentemente terminado TODO
+
+/**
+ * Uma <code>Clausula</code> é a descrição de uma parte do contrato cada 
+ * <code>Contrato</code> possui uma ou um conjunto de clausulas
+ * 
+ * @author Rogoberto Ribeiro
+ * @version 1.0
+ *
+ */
 @Embeddable
-@Table(name = "caracteristica_imovel")
+@Table(name = "clausula")
 public class Clausula {
 	@Column(name = "titulo", length = 50, nullable = true)
 	private String titulo;
@@ -14,12 +22,25 @@ public class Clausula {
 	// paragrafos
 	@Column(name = "conteudo", length = 10000, nullable = true)
 	private String conteudo;
+	
+
+	/**
+	 * retorna o titulo do endereço
+	 * 
+	 * @return String titulo
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
+	/**
+	 * retorna o Conteudo do endereço
+	 * 
+	 * @return String Conteudo
+	 */
 	public String getConteudo() {
 		return conteudo;
 	}
