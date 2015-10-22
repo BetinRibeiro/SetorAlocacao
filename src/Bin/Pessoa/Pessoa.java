@@ -22,32 +22,32 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	@Column(name = "nome",length=80, nullable=true, unique=false)
+	@Column(name = "nome",length=80)
 	private String nome;
-	@Column(name = "nascionalidade",length=80, nullable=true, unique=false)
+	@Column(name = "nascionalidade",length=80)
 	private String nascionalidade;
-	@Column(name = "naturalidade",length=80, nullable=true, unique=false)
+	@Column(name = "naturalidade",length=80)
 	private String naturalidade;
-	@Column(name = "estado_civil",length=80, nullable=true, unique=false)
+	@Column(name = "estado_civil",length=80)
 	private String estadoCivil;
-	@Column(name = "cargo",length=80, nullable=true, unique=false)
+	@Column(name = "cargo",length=80)
 	private String cargo;
 	
-	@Column(name = "cpf",length=11, nullable=true, unique=true)
+	@Column(name = "cpf",length=11)
 	private long cpf;
-	@Column(name = "email",length=80, nullable=true, unique=true)
+	@Column(name = "email",length=80)
 	private String email;
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=true)
 	private Date dataNascimento;
-	@Column(name = "observacao",length=80, nullable=true, unique=true)
+	@Column(name = "observacao",length=80)
 	private String observacao;
-	@Column(name = "escolaridade",length=80, nullable=true, unique=false)
+	@Column(name = "escolaridade",length=80)
 	private String escolaridade;
-	@Column(name = "sexo",length=80, nullable=true, unique=false)
+	@Column(name = "sexo",length=80)
 	private String sexo;
 	
-	@Column(name = "uf_naturalidade",length=2, nullable=true)
+	@Column(name = "uf_naturalidade",length=2)
 	private String ufNaturalidade;
 	
 	

@@ -8,9 +8,9 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "telefone_pessoa")
 public class Telefone {
-	@Column(name = "fone1",length=12, nullable=true)
+	@Column(name = "fone1",length=12)
 	private long fone1;
-	@Column(name = "fone2",length=12, nullable=true)
+	@Column(name = "fone2",length=12)
 	private long fone2;
 	public long getFone1() {
 		return fone1;

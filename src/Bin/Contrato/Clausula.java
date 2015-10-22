@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "clausula")
 public class Clausula {
-	@Column(name = "titulo", length = 50, nullable = true)
+	@Column(name = "titulo", length = 50)
 	private String titulo;
 	// verificar aqui o tamanho maximo que pode ter um conteudo com todos os
 	// paragrafos
-	@Column(name = "conteudo", length = 10000, nullable = true)
+	@Column(name = "conteudo", length = 10000)
 	private String conteudo;
 	
 

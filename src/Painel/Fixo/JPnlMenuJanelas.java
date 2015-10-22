@@ -7,22 +7,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import Janela.Cadastro.*;
 import Janela.Lista.JFrmListaAtendente;
-import Janela.Lista.JFrmListaCaptacao;
+import Janela.Lista.JFrmListaContratos;
+import Janela.Lista.JFrmListaInteressado;
 import Janela.Lista.JFrmListaImoveis;
 import Janela.Lista.JFrmListaPessoa;
+import Painel.Dinamico.JFrmDepoisDeletar;
 
 @SuppressWarnings("serial")
 public class JPnlMenuJanelas extends JPanel implements ActionListener {
 
 	private JMenuItem opConsultaAtendente;
 	private JMenuItem opConsultaCaptao;
-	private JMenuItem opCaptacao;
+	private JMenuItem opInteressado;
 	private JMenuItem opCadastroAtendente;
 
 	/**
@@ -55,25 +58,43 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		JMenuItem opConsultaPessoa = new JMenuItem("Consulta Pessoa");
 		menuConsulta.add(opConsultaPessoa);
 
-		JMenu menuMovimentao = new JMenu("Movimenta\u00E7\u00E3o");
-		menuBar.add(menuMovimentao);
-
 		JMenu menuRelatrio = new JMenu("Relat\u00F3rio");
 		menuBar.add(menuRelatrio);
-		
-		
-		 opCadastroAtendente = new JMenuItem("Cadastro Atendente");
+
+		JMenuItem mntmRelatorioLocadores = new JMenuItem("Relatorio Locadores");
+		menuRelatrio.add(mntmRelatorioLocadores);
+
+		JMenuItem mntmRelatorioLocatarios = new JMenuItem("Relatorio Locatarios");
+		menuRelatrio.add(mntmRelatorioLocatarios);
+
+		JMenuItem mntmRelatorioContratos = new JMenuItem("Relatorio Contratos");
+		menuRelatrio.add(mntmRelatorioContratos);
+
+		JMenuItem mnRelatorioVisitas = new JMenuItem("Relatorio Visitas");
+		menuRelatrio.add(mnRelatorioVisitas);
+
+		opCadastroAtendente = new JMenuItem("Cadastro Atendente");
 		menuCadatro.add(opCadastroAtendente);
-		
-		opCaptacao = new JMenuItem("Capta\u00E7\u00E3o");
-		menuCadatro.add(opCaptacao);
-		
+
+		JMenuItem mnCadastroContrato = new JMenuItem("Cadastro Contrato");
+		menuCadatro.add(mnCadastroContrato);
+
+		opInteressado = new JMenuItem("Cadastro Interessado");
+		menuCadatro.add(opInteressado);
+
 		opConsultaAtendente = new JMenuItem("Consulta Atendente");
 		menuConsulta.add(opConsultaAtendente);
-		
-		 opConsultaCaptao = new JMenuItem("Consulta Capta\u00E7\u00E3o");
+
+		JMenuItem mntConsultaContrato = new JMenuItem("Consulta Contrato");
+		menuConsulta.add(mntConsultaContrato);
+
+		opConsultaCaptao = new JMenuItem("Consulta Interessado");
 		menuConsulta.add(opConsultaCaptao);
-		
+
+		mnCadastroContrato.addActionListener(this);
+		mnCadastroContrato.setActionCommand("CAD_CONTr");
+		mntConsultaContrato.addActionListener(this);
+		mntConsultaContrato.setActionCommand("CONS_CONTr");
 
 		// cadastros
 		opCadastroImvel.addActionListener(this);
@@ -84,15 +105,40 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 		opConsultaImvel.setActionCommand("CONS_IMOVEL");
 		opConsultaPessoa.addActionListener(this);
 		opConsultaPessoa.setActionCommand("CONS_PESSOA");
-		opCaptacao.addActionListener(this);
-		opCaptacao.setActionCommand("CAD_CAPT");
+		opInteressado.addActionListener(this);
+		opInteressado.setActionCommand("CAD_CAPT");
 		opConsultaCaptao.addActionListener(this);
 		opConsultaCaptao.setActionCommand("CONS_CAPT");
 		opCadastroAtendente.addActionListener(this);
 		opCadastroAtendente.setActionCommand("CAD_ATEN");
 		opConsultaAtendente.addActionListener(this);
 		opConsultaAtendente.setActionCommand("CONS_ATEN");
+
+		JMenu mnAjuda = new JMenu("Ajuda");
+		menuBar.add(mnAjuda);
+
+		JMenuItem mntmVideosExplicativos = new JMenuItem("Videos Explicativos");
+		mnAjuda.add(mntmVideosExplicativos);
 		
+		mntmVideosExplicativos.addActionListener(this);
+		mntmVideosExplicativos.setActionCommand("SITE");
+		
+
+		JMenuItem mntmDocumentaoDeApoio = new JMenuItem("Documenta\u00E7\u00E3o de Apoio");
+		mnAjuda.add(mntmDocumentaoDeApoio);
+		
+		mntmDocumentaoDeApoio.addActionListener(this);
+		mntmDocumentaoDeApoio.setActionCommand("SITE");
+
+		mntmRelatorioContratos.addActionListener(this);
+		mntmRelatorioLocadores.addActionListener(this);
+		mntmRelatorioLocatarios.addActionListener(this);
+		mnRelatorioVisitas.addActionListener(this);
+
+		mntmRelatorioContratos.setActionCommand("RELAT");
+		mntmRelatorioLocadores.setActionCommand("RELAT");
+		mntmRelatorioLocatarios.setActionCommand("RELAT");
+		mnRelatorioVisitas.setActionCommand("RELAT");
 
 	}
 
@@ -120,19 +166,35 @@ public class JPnlMenuJanelas extends JPanel implements ActionListener {
 			consultaPessoa.setVisible(true);
 			break;
 		case "CAD_CAPT":
-			JFrmCaptacao captacaoCliente = new JFrmCaptacao(null);
-			captacaoCliente.setVisible(true);
+			JFrmInteressado InteressadoCliente = new JFrmInteressado(null);
+			InteressadoCliente.setVisible(true);
 			break;
 		case "CONS_CAPT":
-			JFrmListaCaptacao listaCaptacao = new JFrmListaCaptacao("");
-			listaCaptacao.setVisible(true);
+			JFrmListaInteressado listaInteressado = new JFrmListaInteressado("");
+			listaInteressado.setVisible(true);
 			break;
 		case "CAD_ATEN":
 			JFrmCadastroAtendente cadastroAtendente = new JFrmCadastroAtendente(null);
 			cadastroAtendente.setVisible(true);
+			break;
 		case "CONS_ATEN":
 			JFrmListaAtendente consultaAtendente = new JFrmListaAtendente("");
 			consultaAtendente.setVisible(true);
+			break;
+		case "CONS_CONTr":
+			JFrmListaContratos consultacontrato = new JFrmListaContratos("");
+			consultacontrato.setVisible(true);
+			break;
+		case "CAD_CONTr":
+			JFrmCadastroContrato ccontr = new JFrmCadastroContrato();
+			ccontr.setVisible(true);
+			break;
+		case "RELAT":
+			JFrmDepoisDeletar impr = new JFrmDepoisDeletar();
+			impr.setVisible(true);
+			break;
+		case "SITE":
+			JOptionPane.showMessageDialog(this, "Direcionamento para uma pagina WEB");
 			break;
 
 		default:

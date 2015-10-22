@@ -15,13 +15,13 @@ public class Atendente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	@Column(name = "nome",length=80, unique=true)
+	@Column(name = "nome",length=80)
 	private String nome;
 	@Embedded
 	private Telefone telefone;
-	@Column(name = "email",length=80, unique=true)
+	@Column(name = "email",length=80)
 	private String email;
-	@Column(name = "senha",length=15, unique=true)
+	@Column(name = "senha",length=15)
 	private String senha;
 	
 	

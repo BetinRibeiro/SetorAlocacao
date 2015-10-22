@@ -6,11 +6,11 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "endereco")
 public class Rg {
-	@Column(name = "rg",length=10, nullable=true, unique=true)
+	@Column(name = "rg",length=10)
 	private long rg;
-	@Column(name = "orgao_espedidor",length=10, nullable=true, unique=false)
+	@Column(name = "orgao_espedidor",length=10)
 	private String orgaoEspedidor;
-	@Column(name = "uf_rg",length=2, nullable=true)
+	@Column(name = "uf_rg",length=2)
 	private String ufrg;
 	public long getRg() {
 		return rg;

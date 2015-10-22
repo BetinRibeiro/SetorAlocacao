@@ -21,7 +21,7 @@ public class Imovel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	@Column(name = "cod_imovel",length=6, unique=false)
+	@Column(name = "cod_imovel")
 	private String codImovel;
 	@OneToOne
     @JoinColumn(name="id_pessoa")
@@ -32,13 +32,13 @@ public class Imovel {
 	private Endereco end;
 	@Embedded
 	private Caracteristica caracteristicas;
-	@Column(name = "valor",length=11, nullable=true)
+	@Column(name = "valor",length=11)
 	private float valor;
-	@Column(name = "valor_aluguel",length=11, nullable=true)
+	@Column(name = "valor_aluguel",length=11)
 	private float valorAluguel;
-	@Column(name = "informacoes",length=80, nullable=true)
+	@Column(name = "informacoes",length=80)
 	private String informacoes;
-	@Column(name = "disponivel", nullable=true)
+	@Column(name = "disponivel")
 	private boolean disponivel;
 	
 	

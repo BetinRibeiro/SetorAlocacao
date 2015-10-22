@@ -8,15 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import Bin.Pessoa.Pessoa;
-import Janela.Cadastro.JFrmCadastroPessoa;
+import Bin.Contrato.Contrato;
+import Janela.Cadastro.JFrmCadastroContrato;
 import Persistence.Dao;
-import TableModel.TMPessoa;
+import TableModel.TMContrato;
 
-public class JFrmListaPessoa extends JFrmLista implements ActionListener {
+public class JFrmListaContratos extends JFrmLista implements ActionListener {
 	private Dao banco = new Dao();
-	private TMPessoa model = new TMPessoa();
-	private Pessoa Pessoa = null;
+	private TMContrato model = new TMContrato();
+	private Contrato Contrato = null;
 	
 	//TODO retirar esse metodo estatico pois não ha necessidade 
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 			public void run() {
 				try {
 
-					JFrmListaPessoa frame = new JFrmListaPessoa("");
+					JFrmListaContratos frame = new JFrmListaContratos("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,20 +33,20 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 		});
 	}
 
-	public JFrmListaPessoa(String escolher) {
+	public JFrmListaContratos(String escolher) {
 		super(escolher);
-		model= new TMPessoa();
+		model= new TMContrato();
 		tableObjeto = new JTable(model);
 		tableObjeto.getTableHeader().setReorderingAllowed(false);
 		tableObjeto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tableObjeto);
-		renomeando("Lista de Pessoas", "Nome");
+		renomeando("Lista de Contratos", "Nome");
 	}
 
 	@Override
 	void retorno() {
-		setObj((Pessoa) banco.buscarPorId(
-				Pessoa.class,
+		setObj((Contrato) banco.buscarPorId(
+				Contrato.class,
 				(Integer) tableObjeto.getValueAt(
 						tableObjeto.getSelectedRow(), 0)));
 		getObj();
@@ -55,21 +55,21 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 
 	@Override
 	public void setObj(Object obj) {
-		this.Pessoa = (Bin.Pessoa.Pessoa) obj;
+		this.Contrato = (Bin.Contrato.Contrato) obj;
 	}
 
 	@Override
 	public Object getObj() {
-		return Pessoa;
+		return Contrato;
 	}
 
 	@Override
 	void Detalhe() {
-		Pessoa Pessoa = (Pessoa) banco.buscarPorId(
-				Pessoa.class,
+		Contrato Contrato = (Contrato) banco.buscarPorId(
+				Contrato.class,
 				(Integer) tableObjeto.getValueAt(
 						tableObjeto.getSelectedRow(), 0));
-		JFrmCadastroPessoa c = new JFrmCadastroPessoa(Pessoa);
+		JFrmCadastroContrato c = new JFrmCadastroContrato();
 		txtNomeBusca.setText("");
 		model.removeTudo();
 		c.setVisible(true);
@@ -79,17 +79,17 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 	void buscar() {
 		try {
 			model.removeTudo();
-			List<?> lista = banco.BuscaNomeHabilitado(Pessoa.class,
+			List<?> lista = banco.BuscaNomeHabilitado(Contrato.class,
 					txtNomeBusca.getText(), "nome", true);
 			for (int i = 0; i < lista.size(); i++) {
-				Pessoa classif = (Pessoa) lista.get(i);
+				Contrato classif = (Contrato) lista.get(i);
 				model.addRow(classif);
 				btnAlterar.setEnabled(true);
 			}
 		} catch (Exception e) {
 			btnAlterar.setEnabled(false);
 			JOptionPane.showMessageDialog(contentPane,
-					"ERRO ao buscar um Pessoa.");
+					"ERRO ao buscar um Contrato.");
 		}
 
 	}

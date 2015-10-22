@@ -1,30 +1,29 @@
 package TableModel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import Bin.Interessado.Visita;
+import Bin.Interessado.Interessado;
 
 @SuppressWarnings("serial")
-public class TMVisita extends AbstractTableModel {
-	private SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy" );
-	private List<Visita> dados;
-	private String[] colunas = { "Código", "Atendente","Visitante", "Imóvel", "Data"};
+public class TMInteressado extends AbstractTableModel {
+
+	private List<Interessado> dados;
+	private String[] colunas = { "Código", "Nome", "Telefone"};
 
 	// você precisar que os dados também sejam imediatamente alterados no banco
 	// de dados por exemplo,
 	// você vai precisar adicionar um TableModelListener ao seu model que
 	// executará o método
 	// tableChanged toda vez que os dados da JTable forem alterados.
-	public TMVisita() {
-		dados = new ArrayList<Visita>();
+	public TMInteressado() {
+		dados = new ArrayList<Interessado>();
 
 	}
 
-	public void addRow(Visita p) {
+	public void addRow(Interessado p) {
 
 		this.dados.add(p);
 		this.fireTableDataChanged();
@@ -83,14 +82,10 @@ public class TMVisita extends AbstractTableModel {
 		case 0:
 			return dados.get(linha).getId();
 		case 1:
-			return dados.get(linha).getAtendente().getNome();
+			return dados.get(linha).getNome();
 		case 2:
-			return (dados.get(linha).getCaptacao().getNome());
+			return (dados.get(linha).getTelefone());
 
-		case 3:
-			return (dados.get(linha).getImovel().getEnd().getBairro());
-		case 4:
-			return (dt.format(dados.get(linha).getDataAgendamento()));
 
 		}
 		return null;

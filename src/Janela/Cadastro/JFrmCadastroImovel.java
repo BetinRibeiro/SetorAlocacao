@@ -9,6 +9,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.CharArrayReader;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -29,8 +30,7 @@ import Bin.Pessoa.Pessoa;
 import Janela.Lista.JFrmListaPessoa;
 import Persistence.Dao;
 
-public class JFrmCadastroImovel extends JDialog implements ActionListener
-		 {
+public class JFrmCadastroImovel extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -75,12 +75,10 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 
 	private Dao banco = new Dao();
 
-	String[] uf = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
-			"MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO",
-			"RR", "RS", "SC", "SE", "SP", "TO" };
-	String[] tipo = { "Apartamento", "Casa", "Comercial", "Sala Comercial",
-			"Terreno", "Cadas em Condominio", "Ponto Comercial", "Duplex",
-			"Loteamento", "Repasse", "Lote em Condominio" };
+	String[] uf = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE",
+			"PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" };
+	String[] tipo = { "Apartamento", "Casa", "Comercial", "Sala Comercial", "Terreno", "Cadas em Condominio",
+			"Ponto Comercial", "Duplex", "Loteamento", "Repasse", "Lote em Condominio" };
 
 	String[] numeros = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 	String[] finalidade = { "Locação", "Venda" };
@@ -96,8 +94,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 			public void run() {
 				try {
 
-					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+					UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 					JFrmCadastroImovel frame = new JFrmCadastroImovel(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -286,12 +283,10 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		panel.add(scrollPane);
 
 		txtInformacoesCaracteristica = new JTextArea();
-		txtInformacoesCaracteristica
-				.setText("Tamanho : m\u00B2\r\n\r\n\u00C1rea costruida: m\u00B2\r\n\r\n\r\n\r\n");
+		txtInformacoesCaracteristica.setText("Tamanho : m\u00B2\r\n\r\n\u00C1rea costruida: m\u00B2\r\n\r\n\r\n\r\n");
 		scrollPane.setViewportView(txtInformacoesCaracteristica);
 
-		JLabel lblInformaesComplementares = new JLabel(
-				"Informa\u00E7\u00F5es Complementares");
+		JLabel lblInformaesComplementares = new JLabel("Informa\u00E7\u00F5es Complementares");
 		lblInformaesComplementares.setBounds(10, 250, 173, 14);
 		panel.add(lblInformaesComplementares);
 
@@ -334,30 +329,30 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		JLabel lblValorAluguel = new JLabel("Valor Aluguel");
 		lblValorAluguel.setBounds(612, 100, 93, 14);
 		panel.add(lblValorAluguel);
-		
+
 		JComboBox comboBox = new JComboBox(numeros);
-//		comboBox.setSelectedIndex(0);
+		// comboBox.setSelectedIndex(0);
 		comboBox.setBounds(525, 247, 60, 20);
 		panel.add(comboBox);
-		
+
 		JLabel lblQuintal = new JLabel("Quintal");
 		lblQuintal.setBounds(525, 232, 60, 14);
 		panel.add(lblQuintal);
-		
+
 		JComboBox comboBox_1 = new JComboBox(numeros);
-//		comboBox_1.setSelectedIndex(0);
+		// comboBox_1.setSelectedIndex(0);
 		comboBox_1.setBounds(595, 247, 60, 20);
 		panel.add(comboBox_1);
-		
+
 		JLabel lblCozinha = new JLabel("Cozinha");
 		lblCozinha.setBounds(595, 232, 60, 14);
 		panel.add(lblCozinha);
-		
+
 		JComboBox comboBox_2 = new JComboBox(numeros);
-//		comboBox_2.setSelectedIndex(0);
+		// comboBox_2.setSelectedIndex(0);
 		comboBox_2.setBounds(665, 247, 60, 20);
 		panel.add(comboBox_2);
-		
+
 		JLabel lblSuits = new JLabel("Suits");
 		lblSuits.setBounds(665, 232, 60, 14);
 		panel.add(lblSuits);
@@ -386,7 +381,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		if (imovel != null) {
 
 			btnSalvarAlterar.setText("Alterar");
-			btnCancelarDeletar.setToolTipText("Deletar");
+			btnCancelarDeletar.setText("Deletar");
 			inserir(imovel);
 			txtEnable(false);
 		}
@@ -402,34 +397,28 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 	public void inserir(Object ob) {
 		Imovel imovel = (Imovel) ob;
 		txtValor.setText(String.valueOf(imovel.getValor()).replace(",", "."));
-		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel())
-				.replace(",", "."));
+		txtValorAluguel.setText(String.valueOf(imovel.getValorAluguel()).replace(",", "."));
 		txtLougradouro.setText(imovel.getEnd().getLougradouro());
 		txtBairro.setText(imovel.getEnd().getBairro());
 		txtCidade.setText(imovel.getEnd().getCidade());
 		txtCep.setText(imovel.getEnd().getCep());
 		txtId.setText(String.valueOf(imovel.getId()));
 		txtCodImovel.setText(imovel.getCodImovel());
-		txtIdProprietario.setText(String.valueOf(imovel.getProprietario()
-				.getId()));
+		txtIdProprietario.setText(String.valueOf(imovel.getProprietario().getId()));
 		txtNomeProprietario.setText(imovel.getProprietario().getNome());
-		txtNumeroEscritura.setText(String.valueOf(imovel.getEscritura()
-				.getNumeroEscritura()));
+		txtNumeroEscritura.setText(String.valueOf(imovel.getEscritura().getNumeroEscritura()));
 		txtNomeCartorio.setText(imovel.getEscritura().getNomeCartorio());
 		txtCidadeCartorio.setText(imovel.getEscritura().getCidadeCartorio());
-		txtInformacoesAlocacao.setText(imovel.getInformacoesComplementares());
-		txtInformacoesCaracteristica.setText(imovel.getCaracteristicas()
-				.getInformacaoes());
 
-		boxFinalidade.setSelectedItem(imovel.getFinalidade());
-		boxTipo.setSelectedItem(imovel.getTipo());
-		boxSuites.setSelectedItem(imovel.getTipo());
-		boxGaragens.setSelectedItem(imovel.getCaracteristicas()
-				.getNumeroGaragens());
-		boxBanheiros.setSelectedItem(imovel.getCaracteristicas()
-				.getNumeroBanheiros());
-		boxComodos.setSelectedItem(imovel.getCaracteristicas()
-				.getNumeroComodos());
+		txtInformacoesAlocacao.setText(imovel.getInformacoes());
+		txtInformacoesCaracteristica.setText(imovel.getInformacoes());
+
+		boxFinalidade.setSelectedItem(imovel.getCaracteristicas().getFinalidade());
+		boxTipo.setSelectedItem(imovel.getCaracteristicas().getTipo());
+		boxSuites.setSelectedItem(imovel.getCaracteristicas().getQuantidadeSuit());
+		boxGaragens.setSelectedItem(imovel.getCaracteristicas().getQuantidadeGaragem());
+		boxBanheiros.setSelectedItem(imovel.getCaracteristicas().getQuantidadeBanheiro());
+		boxComodos.setSelectedItem(imovel.getCaracteristicas().getQuantidadeComodos());
 		boxUFEndereco.setSelectedItem(imovel.getEnd().getUf());
 		boxUfCartorio.setSelectedItem(imovel.getEscritura().getUf());
 
@@ -448,7 +437,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		txtInformacoesCaracteristica.setEnabled(valor);
 		txtValor.setEnabled(valor);
 		txtValorAluguel.setEnabled(valor);
-
+		btnBuscar.setEnabled(valor);
 		boxFinalidade.setEnabled(valor);
 		boxTipo.setEnabled(valor);
 		boxSuites.setEnabled(valor);
@@ -457,6 +446,8 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		boxComodos.setEnabled(valor);
 		boxUFEndereco.setEnabled(valor);
 		boxUfCartorio.setEnabled(valor);
+		chckbxDisponvel.setEnabled(valor);
+		box
 
 	}
 
@@ -485,12 +476,10 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 			btnCancelarDeletar.setText("Cancelar");
 			break;
 		case "Deletar":
-			int op = JOptionPane.showConfirmDialog(contentPane,
-					"Deseja realmente deletar?");
+			int op = JOptionPane.showConfirmDialog(contentPane, "Deseja realmente deletar?");
 			System.out.println(op);
 			if (op == 0) {
-				JOptionPane.showMessageDialog(contentPane,
-						"Você não tem autorização!");
+				JOptionPane.showMessageDialog(contentPane, "Você não tem autorização!");
 			}
 			break;
 		case "Buscar":
@@ -516,79 +505,85 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 	}
 
 	public void salvar() {
-		Imovel imovel = new Imovel();
-		if (imovelParaAlterar != null) {
-			System.out.println(txtId.getText());
-			imovel.setId(Integer.parseInt(txtId.getText()));
-		}
+		try {
 
-		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
-		imovel.setValor(Float.parseFloat(txtValorAluguel.getText().replace(",",
-				".")));
-
-		imovel.setCodImovel(txtCodImovel.getText());
-		imovel.setTipo(String.valueOf(boxTipo.getSelectedItem()));
-		imovel.setFinalidade(String.valueOf(boxFinalidade.getSelectedItem()));
-
-		Escritura escritura = new Escritura();
-		escritura.setCidadeCartorio(txtCidade.getText());
-		escritura.setNomeCartorio(txtNomeCartorio.getText());
-		escritura.setNumeroEscritura(String.valueOf(txtNumeroEscritura
-				.getText()));
-		escritura.setUf(String.valueOf(boxUfCartorio.getSelectedItem()));
-
-		imovel.setEscritura(escritura);
-
-		Pessoa proprietario = (Pessoa) banco.buscarPorId(Pessoa.class,
-				Integer.parseInt(txtIdProprietario.getText()));
-		imovel.setProprietario(proprietario);
-
-		Endereco endereco = new Endereco();
-		endereco.setLougradouro(txtLougradouro.getText());
-		endereco.setBairro(txtBairro.getText());
-		endereco.setUf(String.valueOf(boxUFEndereco.getSelectedItem()));
-		endereco.setCidade(txtCidade.getText());
-		endereco.setCep(txtCep.getText());
-
-		imovel.setEnd(endereco);
-
-		Caracteristica caracteristica = new Caracteristica();
-		caracteristica.setInformacaoes(txtInformacoesCaracteristica.getText());
-		caracteristica.setNumeroBanheiros(boxBanheiros.getSelectedIndex());
-		caracteristica.setNumeroComodos(boxComodos.getSelectedIndex());
-		caracteristica.setNumeroGaragens(boxGaragens.getSelectedIndex());
-		caracteristica.setNumeroSuits(boxSuites.getSelectedIndex());
-
-		imovel.setCaracteristicas(caracteristica);
-		imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
-		imovel.setValorAluguel(Float.parseFloat(txtValorAluguel.getText()
-				.replace(",", ".")));
-		imovel.setInformacoesComplementares(txtInformacoesAlocacao.getText());
-
-		if (imovel.getEnd().getCep() == null) {
-			JOptionPane.showMessageDialog(contentPane,
-					"O CEP é invalido, favor verificar novamente!",
-					"ERRO DE CEP", JOptionPane.INFORMATION_MESSAGE);
-
-		} else {
-
+			Imovel imovel = new Imovel();
 			if (imovelParaAlterar != null) {
-				banco.salvarOuAtualizarObjeto(imovel);
-				JOptionPane.showMessageDialog(contentPane,
-						"Pessoa salva com sucesso!");
-				dispose();
+				System.out.println(txtId.getText());
+				imovel.setId(Integer.parseInt(txtId.getText()));
+			}
+
+			imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
+			imovel.setValor(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
+
+			imovel.setCodImovel(txtCodImovel.getText());
+
+			Escritura escritura = new Escritura();
+			escritura.setCidadeCartorio(txtCidade.getText());
+			escritura.setNomeCartorio(txtNomeCartorio.getText());
+			escritura.setNumeroEscritura(String.valueOf(txtNumeroEscritura.getText()));
+			escritura.setUf(String.valueOf(boxUfCartorio.getSelectedItem()));
+
+			imovel.setEscritura(escritura);
+
+			Pessoa proprietario = (Pessoa) banco.buscarPorId(Pessoa.class,
+					Integer.parseInt(txtIdProprietario.getText()));
+			imovel.setProprietario(proprietario);
+
+			Endereco endereco = new Endereco();
+			endereco.setLougradouro(txtLougradouro.getText());
+			endereco.setBairro(txtBairro.getText());
+			endereco.setUf(String.valueOf(boxUFEndereco.getSelectedItem()));
+			endereco.setCidade(txtCidade.getText());
+			endereco.setCep(txtCep.getText());
+
+			imovel.setEnd(endereco);
+
+			Caracteristica caracteristica = new Caracteristica();
+			caracteristica.setFinalidade(String.valueOf(boxFinalidade.getSelectedItem()));
+			caracteristica.setTipo(String.valueOf(boxTipo.getSelectedItem()));
+			caracteristica.setFinalidade(String.valueOf(boxFinalidade.getSelectedItem()));
+
+			caracteristica.setQuantidadeBanheiro(0);
+			caracteristica.setQuantidadeComodos(0);
+			caracteristica.setQuantidadeCozinha(0);
+			caracteristica.setQuantidadeGaragem(0);
+			caracteristica.setQuantidadeQuarto(0);
+			caracteristica.setQuantidadeQuintal(0);
+			caracteristica.setQuantidadeSala(0);
+			caracteristica.setQuantidadeSuit(0);
+
+			imovel.setCaracteristicas(caracteristica);
+			imovel.setValor(Float.parseFloat(txtValor.getText().replace(",", ".")));
+			imovel.setValorAluguel(Float.parseFloat(txtValorAluguel.getText().replace(",", ".")));
+			imovel.setInformacoes(txtInformacoesAlocacao.getText());
+
+			if (imovel.getEnd().getCep() == null) {
+				JOptionPane.showMessageDialog(contentPane, "O CEP é invalido, favor verificar novamente!",
+						"ERRO DE CEP", JOptionPane.INFORMATION_MESSAGE);
+
 			} else {
-				banco.salvarObjeto(imovel);
-				txtId.setText(String.valueOf(imovel.getId()));
-			}
 
+				if (imovelParaAlterar != null) {
+					banco.salvarOuAtualizarObjeto(imovel);
+					JOptionPane.showMessageDialog(contentPane, "Imovel salvo com sucesso!");
+					dispose();
+				} else {
+					banco.salvarObjeto(imovel);
+					txtId.setText(String.valueOf(imovel.getId()));
+				}
+
+				JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
+				if (!txtId.getText().equalsIgnoreCase("")) {
+
+					txtEnable(false);
+					btnCancelarDeletar.setToolTipText("Novo");
+				}
+			}
+		} catch (Exception e) {
+			liberarAlteracao();
 			JOptionPane.showMessageDialog(contentPane,
-					"Pessoa salva com sucesso!");
-			if (!txtId.getText().equalsIgnoreCase("")) {
-
-				txtEnable(false);
-				btnCancelarDeletar.setToolTipText("Novo");
-			}
+					"Erro ao salvar analise se todas as \n informações estão corretamente preenchidas");
 		}
 	}
 
@@ -611,8 +606,7 @@ public class JFrmCadastroImovel extends JDialog implements ActionListener
 		txtNomeCartorio.setText("");
 		txtCidadeCartorio.setText("");
 		txtInformacoesAlocacao.setText("");
-		txtInformacoesCaracteristica
-				.setText("Tamanho : m²\n\nÁrea costruida: m²");
+		txtInformacoesCaracteristica.setText("Tamanho : m²\n\nÁrea costruida: m²");
 		txtIdProprietario.setText("");
 		txtNomeProprietario.setText("");
 

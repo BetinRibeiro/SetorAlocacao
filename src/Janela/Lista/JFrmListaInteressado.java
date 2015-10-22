@@ -2,21 +2,38 @@ package Janela.Lista;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
-import Bin.Pessoa.Pessoa;
-import Janela.Cadastro.JFrmCadastroPessoa;
+import Bin.Interessado.Interessado;
+import Janela.Cadastro.JFrmInteressado;
 import Persistence.Dao;
-import TableModel.TMPessoa;
+import TableModel.TMInteressado;
 
-public class JFrmListaPessoa extends JFrmLista implements ActionListener {
+/**
+ * JFrmListainteressado lista as captações nesse caso lista quando se pesquisa alguma captação
+ * @author Rogoberto
+ *
+ */
+
+public class JFrmListaInteressado extends JFrmLista implements ActionListener {
+
 	private Dao banco = new Dao();
-	private TMPessoa model = new TMPessoa();
-	private Pessoa Pessoa = null;
+	private TMInteressado model = new TMInteressado();
+	private Interessado interessado = null;
+	
+	/**
+	 * essa formatação será simplesmente para converter datas no formato em que
+	 * o banco entende
+	 */
+	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	
 	//TODO retirar esse metodo estatico pois não ha necessidade 
 	public static void main(String[] args) {
@@ -24,7 +41,9 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 			public void run() {
 				try {
 
-					JFrmListaPessoa frame = new JFrmListaPessoa("");
+					UIManager
+							.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+					JFrmListaInteressado frame = new JFrmListaInteressado("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,20 +52,22 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 		});
 	}
 
-	public JFrmListaPessoa(String escolher) {
+	public JFrmListaInteressado(String escolher) {
 		super(escolher);
-		model= new TMPessoa();
+		model= new TMInteressado();
 		tableObjeto = new JTable(model);
 		tableObjeto.getTableHeader().setReorderingAllowed(false);
 		tableObjeto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tableObjeto);
-		renomeando("Lista de Pessoas", "Nome");
+		renomeando("Lista de Captações", "Nome");
+		buscar();
 	}
+
 
 	@Override
 	void retorno() {
-		setObj((Pessoa) banco.buscarPorId(
-				Pessoa.class,
+		setObj((Interessado) banco.buscarPorId(
+				Interessado.class,
 				(Integer) tableObjeto.getValueAt(
 						tableObjeto.getSelectedRow(), 0)));
 		getObj();
@@ -55,21 +76,21 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 
 	@Override
 	public void setObj(Object obj) {
-		this.Pessoa = (Bin.Pessoa.Pessoa) obj;
+		this.interessado = (Interessado) obj;
 	}
 
 	@Override
 	public Object getObj() {
-		return Pessoa;
+		return interessado;
 	}
 
 	@Override
 	void Detalhe() {
-		Pessoa Pessoa = (Pessoa) banco.buscarPorId(
-				Pessoa.class,
+		Interessado interessado = (Interessado) banco.buscarPorId(
+				Interessado.class,
 				(Integer) tableObjeto.getValueAt(
 						tableObjeto.getSelectedRow(), 0));
-		JFrmCadastroPessoa c = new JFrmCadastroPessoa(Pessoa);
+		JFrmInteressado c = new JFrmInteressado(interessado);
 		txtNomeBusca.setText("");
 		model.removeTudo();
 		c.setVisible(true);
@@ -79,21 +100,20 @@ public class JFrmListaPessoa extends JFrmLista implements ActionListener {
 	void buscar() {
 		try {
 			model.removeTudo();
-			List<?> lista = banco.BuscaNomeHabilitado(Pessoa.class,
+			List<?> lista = banco.BuscaNomeHabilitado(Interessado.class,
 					txtNomeBusca.getText(), "nome", true);
 			for (int i = 0; i < lista.size(); i++) {
-				Pessoa classif = (Pessoa) lista.get(i);
+				Interessado classif = (Interessado) lista.get(i);
 				model.addRow(classif);
 				btnAlterar.setEnabled(true);
 			}
 		} catch (Exception e) {
 			btnAlterar.setEnabled(false);
 			JOptionPane.showMessageDialog(contentPane,
-					"ERRO ao buscar um Pessoa.");
+					"ERRO ao buscar um interessado.");
 		}
 
 	}
-
 	@Override
 	protected void renomeando(String titulo, String nomeBusca) {
 		setTitle(titulo);

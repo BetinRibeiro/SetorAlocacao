@@ -8,9 +8,9 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "filiacao_pessoa")
 public class Filiacao {
-	@Column(name = "nome_pai",length=100, nullable=true)
+	@Column(name = "nome_pai",length=100)
 	private String nomePai;
-	@Column(name = "nome_mae",length=100, nullable=true)
+	@Column(name = "nome_mae",length=100)
 	private String nomeMae;
 
 	public String getNomePai() {

@@ -29,11 +29,12 @@
 		<mapping class="Bin.Imovel.Imovel" />
 		
 		<!-- Declaração do mapeamento da classe Captação e visitas -->
-		<mapping class="Bin.Captacao.Captacao" />
-		<mapping class="Bin.Captacao.Visita" />
+		<mapping class="Bin.Interessado.Interessado" />
+		<mapping class="Bin.Interessado.Visita" />
 		
 		<!-- Declaração do mapeamento da classe Erro para guardar erros ocorridos -->
 		<mapping class="Testes.Erro" />
+		
 
 	</session-factory>
 </hibernate-configuration>

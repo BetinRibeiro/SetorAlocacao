@@ -17,13 +17,13 @@ import javax.persistence.Table;
 @Table(name = "escritura")
 public class Escritura {
 
-	@Column(name = "numero_escritura",length = 20, nullable = true, unique=false)
+	@Column(name = "numero_escritura",length = 20)
 	private String numeroEscritura;
-	@Column(name = "nome_cartorio",length = 100, nullable = true)
+	@Column(name = "nome_cartorio",length = 100)
 	private String nomeCartorio;
-	@Column(name = "cidade_cartorio",length = 100, nullable = true)
+	@Column(name = "cidade_cartorio",length = 100)
 	private String cidadeCartorio;
-	@Column(name = "uf_escritura",length = 2, nullable = true)
+	@Column(name = "uf_escritura",length = 2)
 	private String ufEscritura;
 	
 	public String getUf() {

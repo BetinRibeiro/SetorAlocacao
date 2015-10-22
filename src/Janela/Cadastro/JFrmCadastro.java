@@ -60,8 +60,7 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 	// e faz uma pesquisa preenchendo os valores dos campos com os de uma pessoa
 	// já cadastrada
 	protected Object objParaAlterar = null;
-	
-	
+
 	/**
 	 * Contrutor.
 	 * 
@@ -93,6 +92,7 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 		txtObservacao.setColumns(10);
 		txtObservacao.setBounds(10, 422, 577, 23);
 		contentPane.add(txtObservacao);
+		limparTxt();
 
 		// quando a Objeto for nula será para cadastrar uma Objeto quando ela
 		// não for quer dizer que será feita uma alteração da Objeto que foi
@@ -103,8 +103,8 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 		if (obj != null) {
 
 			btnSalvarAlterar.setText("Alterar");
-			btnCancelarDeletar.setToolTipText("Deletar");
-			inserir(obj);
+			btnCancelarDeletar.setText("Deletar");
+			
 			txtEnable(false);
 		}
 
@@ -147,12 +147,10 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 			btnCancelarDeletar.setText("Cancelar");
 			break;
 		case "Deletar":
-			int op = JOptionPane.showConfirmDialog(contentPane,
-					"Deseja realmente deletar?");
+			int op = JOptionPane.showConfirmDialog(contentPane, "Deseja realmente deletar?");
 			System.out.println(op);
 			if (op == 0) {
-				JOptionPane.showMessageDialog(contentPane,
-						"Você não tem autorização!");
+				JOptionPane.showMessageDialog(contentPane, "Você não tem autorização!");
 			}
 			break;
 
@@ -169,6 +167,7 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 	 * @param ob
 	 */
 	abstract void inserir(Object ob);
+
 	/**
 	 * Salvar - verifica se existe algum id setado no txtId, caso exista se
 	 * trata de um item que esta sendo alterado, caso contrario será a criação
@@ -183,15 +182,18 @@ abstract class JFrmCadastro extends JDialog implements ActionListener {
 	 */
 
 	abstract void salvar();
+
 	/**
-	 * libera alterações 
+	 * libera alterações
 	 */
 
 	abstract void liberarAlteracao();
+
 	/**
 	 * limpa todas as caixas de txto e a data com data atual
 	 */
 	abstract void limparTxt();
+
 	/**
 	 * bloqueia ou desbloqueia os componentes que podem ser alterados
 	 * 

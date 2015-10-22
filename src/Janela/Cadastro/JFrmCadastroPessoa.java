@@ -69,10 +69,6 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 	private Dao banco = new Dao();
 
 
-	// esta variavel quando não esta nula obotão salvar fica com o nome Alterar
-	// e faz uma pesquisa preenchendo os valores dos campos com os de uma pessoa
-	// já cadastrada
-	private Pessoa pessoaParaAlterar = null;
 
 	// Lista de strings que preenchem os boxs
 	String[] uf = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -104,8 +100,6 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 			public void run() {
 				try {
 
-					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
 					JFrmCadastroPessoa frame = new JFrmCadastroPessoa(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -122,6 +116,7 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 	 * @param idFuncionario
 	 */
 	public JFrmCadastroPessoa(Object obj) {
+		
 		super(obj);
 		setTitle("Cadastro de Pessoa");
 
@@ -348,28 +343,20 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 		lblUfOrgo.setBounds(310, 100, 60, 14);
 		panel.add(lblUfOrgo);
 
-		btnSalvarAlterar = new JButton("Salvar");
-		btnSalvarAlterar.setBounds(597, 422, 89, 23);
-		contentPane.add(btnSalvarAlterar);
-
-		btnCancelarDeletar = new JButton("Cancelar");
-		btnCancelarDeletar.setBounds(696, 422, 89, 23);
-		contentPane.add(btnCancelarDeletar);
-
 		txtObservação = new JTextField();
 		txtObservação.setColumns(10);
 		txtObservação.setBounds(10, 422, 577, 23);
 		contentPane.add(txtObservação);
-
-		limparTxt();
+		
+		inserir(obj);
 
 	}
 
 	public void inserir(Object ob) {
 		try {
 			
-	
 		Pessoa pessoa = (Pessoa) ob;
+		
 			txtId.setText(String.valueOf(pessoa.getId()));
 			txtNome.setText(pessoa.getNome());
 			txtRg.setText(String.valueOf(pessoa.getRg().getRg()));
@@ -403,14 +390,9 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 	public void salvar() {
 		try {
 			
-		
+			//setar todos os valores referentes a pessoa para poder salvar!
 		Pessoa pessoa = new Pessoa();
-		if (pessoaParaAlterar != null) {
-			System.out.println(txtId.getText());
-			pessoa.setId(Integer.parseInt(txtId.getText()));
-		}
 		Rg rg = new Rg();
-		
 		pessoa.setRg(rg);
 		pessoa.setNome(txtNome.getText());
 		pessoa.getRg().setRg(Long.valueOf(txtRg.getText()));
@@ -451,21 +433,39 @@ public class JFrmCadastroPessoa extends JFrmCadastro {
 
 		pessoa.setDataNascimento(Date.valueOf(df.format(dtData.getDate())));
 
-		if (pessoaParaAlterar != null) {
+		//quando altera fecha a tela
+		if (objParaAlterar != null) {
+			pessoa.setId(Integer.parseInt(txtId.getText()));
 			banco.salvarOuAtualizarObjeto(pessoa);
-			JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
 			dispose();
+			//quando salva permanece na tela e seta o novo id no local
 		}else  {
+			try {
+				
+			
 			banco.salvarObjeto(pessoa);
 			txtId.setText(String.valueOf(pessoa.getId()));
-		}
-		
-		JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
-		if (!txtId.getText().equalsIgnoreCase("")) {
+			super.btnSalvarAlterar.setText("Alterar");
+			super.btnCancelarDeletar.setText("Novo");
+			super.validate();
+			super.repaint();
+			System.out.println("validou corretamente");
+			
+			
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			
 		}
-		txtEnable(false);
-		btnCancelarDeletar.setToolTipText("Novo");
+		
+		if (txtId.getText()!="0") {
+			JOptionPane.showMessageDialog(contentPane, "Pessoa salva com sucesso!");
+			txtEnable(false);
+			
+		}else {
+			JOptionPane.showMessageDialog(contentPane, "Erro ao salvar verifique os dados corretamente!");
+		}
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

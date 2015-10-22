@@ -8,7 +8,7 @@ import java.util.Scanner;
 import com.sun.jndi.url.dns.dnsURLContext;
 
 import Bin.Endereco;
-import Bin.Captacao.Captacao;
+import Bin.Interessado.Interessado;
 import Bin.Pessoa.Filiacao;
 import Bin.Pessoa.Pessoa;
 import Bin.Pessoa.Telefone;

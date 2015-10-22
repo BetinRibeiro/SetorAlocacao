@@ -73,7 +73,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 					// SmartLookAndFeel.setCurrentTheme(props);
 
 					UIManager
-							.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+							.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 					JFrmPrincipal frame = new JFrmPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -90,12 +90,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 	public JFrmPrincipal() {
 		setTitle("Setor de Visitas e Loca\u00E7\u00E3o");
 		foto = new JLabel();
-		foto.setBounds(10, 414, 250, 145);
-		ImageIcon imagem = new ImageIcon(
-				Main.class.getResource("/Imagens/1288955.png"));
-		Image img = imagem.getImage().getScaledInstance(foto.getWidth(),
-				foto.getHeight(), Image.SCALE_DEFAULT);
-		foto.setIcon(new ImageIcon(img));
+		foto.setBounds(10, 199, 250, 360);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -119,7 +114,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 		btnAgendamentos.setBounds(10, 10, 250, 23);
 		panelComandas.add(btnAgendamentos);
 
-		JButton btnClientes = new JButton("Locadores em Contrato");
+		JButton btnClientes = new JButton("Fechamento de Contrato");
 		btnClientes.setBounds(10, 45, 250, 23);
 		panelComandas.add(btnClientes);
 
@@ -136,8 +131,13 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 //		panelComandas.add(panelCalendario);
 //		panelCalendario.setLayout(null);
 
+//		JButton btnContratosEmVigor = new JButton("Contratos em Vigor");
+//		btnContratosEmVigor.setBounds(10, 150, 250, 23);
+//		panelComandas.add(btnContratosEmVigor);
+		
+		
 		JButton btnContratosEmVigor = new JButton("Contratos em Vigor");
-		btnContratosEmVigor.setBounds(10, 150, 250, 23);
+		btnContratosEmVigor.setBounds(10, 300, 250, 23);
 		panelComandas.add(btnContratosEmVigor);
 
 		JPanel panelRodape = new JPnlRodaPe();
@@ -159,7 +159,7 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 		btnAgendamentos.addActionListener(this);
 		btnAgendamentos.setActionCommand("AGENDAMENTO");
 		btnClientes.addActionListener(this);
-		btnClientes.setActionCommand("LOCADORES");
+		btnClientes.setActionCommand("CONTRATOS");
 		btnImveis.addActionListener(this);
 		btnImveis.setActionCommand("IMOVEIS");
 		btnLocatarios.addActionListener(this);
@@ -181,31 +181,31 @@ public class JFrmPrincipal extends JFrame implements ActionListener {
 			panelSetorial.validate();
 
 			break;
-		case "LOCADORES":
+		case "CONTRATOS":
 			panelSetorial.removeAll();
 			panelSetorial.repaint();
-			panelSetorial.add(new JPnlLocadores());
+			panelSetorial.add(new JPnlContrato());
 			panelSetorial.validate();
 
 			break;
 		case "IMOVEIS":
 		panelSetorial.removeAll();
 		panelSetorial.repaint();
-		panelSetorial.add(new JPnlImoveis());
+		//panelSetorial.add(new JPnlImoveis());
 		panelSetorial.validate();
 
 			break;
 		case "LOCATARIOS":
 			panelSetorial.removeAll();
 			panelSetorial.repaint();
-			panelSetorial.add(new JPnlLocatarios());
+			//panelSetorial.add(new JPnlLocatarios());
 			panelSetorial.validate();
 
 			break;
-		case "CONTRATOS":
+		case "CONTRATOJS":
 			panelSetorial.removeAll();
 			panelSetorial.repaint();
-			panelSetorial.add(new JPnlContratos());
+			//panelSetorial.add(new JPnlContratos());
 			panelSetorial.validate();
 
 			break;

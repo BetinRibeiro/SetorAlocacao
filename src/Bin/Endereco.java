@@ -22,15 +22,15 @@ import Bin.Pessoa.Pessoa;
 @Embeddable
 @Table(name = "endereco")
 public class Endereco {
-	@Column(name = "lougradouro", length = 100, nullable = true)
+	@Column(name = "lougradouro", length = 100)
 	private String lougradouro;
-	@Column(name = "cidade", length = 50, nullable = true)
+	@Column(name = "cidade", length = 50)
 	private String cidade;
-	@Column(name = "bairro", length = 50, nullable = true)
+	@Column(name = "bairro", length = 50)
 	private String bairro;
-	@Column(name = "uf_endereco", length = 2, nullable = true)
+	@Column(name = "uf_endereco", length = 2)
 	private String ufEndereco;
-	@Column(name = "cep", length = 9, nullable = true)
+	@Column(name = "cep", length = 9)
 	private String cep;
 
 	/**

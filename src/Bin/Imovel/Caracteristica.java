@@ -15,25 +15,25 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "informacaoes_imovel")
 public class Caracteristica{
-	@Column(name = "quantidade_garagem",length = 2, nullable = true)
+	@Column(name = "quantidade_garagem",length = 2)
 	private int quantidadeGaragem;
-	@Column(name = "quantidade_quarto",length = 2, nullable = true)
+	@Column(name = "quantidade_quarto",length = 2)
 	private int quantidadeQuarto;
-	@Column(name = "quantidade_banheiro",length = 2, nullable = true)
+	@Column(name = "quantidade_banheiro",length = 2)
 	private int quantidadeBanheiro;
-	@Column(name = "quantidade_sala",length=2, nullable=true)
+	@Column(name = "quantidade_sala",length=2)
 	private int quantidadeSala;
-	@Column(name = "quantidade_quintal",length=2, nullable=true)
+	@Column(name = "quantidade_quintal",length=2)
 	private int quantidadeQuintal;
-	@Column(name = "quantidade_cozinha",length=2, nullable=true)
+	@Column(name = "quantidade_cozinha",length=2)
 	private int quantidadeCozinha;
-	@Column(name = "quantidade_suit",length=2, nullable=true)
+	@Column(name = "quantidade_suit",length=2)
 	private int quantidadeSuit;
-	@Column(name = "quantidade_comodos",length=2, nullable=true)
+	@Column(name = "quantidade_comodos",length=2)
 	private int quantidadeComodos;
-	@Column(name = "tipo",length=200, nullable=true)
+	@Column(name = "tipo",length=200)
 	private String tipo;
-	@Column(name = "finalidade",length=200, nullable=true)
+	@Column(name = "finalidade",length=200)
 	private String finalidade;
 	
 	

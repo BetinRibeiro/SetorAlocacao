@@ -146,7 +146,6 @@ public class JFrmCadastroAtendente extends JFrmCadastro {
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setAlwaysOnTop(true);
 
 	}
 

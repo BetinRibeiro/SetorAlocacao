@@ -23,12 +23,12 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
-import Bin.Captacao.Captacao;
-import Bin.Captacao.Visita;
 import Bin.Imovel.Imovel;
+import Bin.Interessado.Interessado;
+import Bin.Interessado.Visita;
 import Bin.Pessoa.Atendente;
 import Janela.Lista.JFrmListaAtendente;
-import Janela.Lista.JFrmListaCaptacao;
+import Janela.Lista.JFrmListaInteressado;
 import Janela.Lista.JFrmListaImoveis;
 import Persistence.Dao;
 import TableModel.TMVisita;
@@ -257,13 +257,20 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 		JLabel lblCodigoVisita = new JLabel("Codigo Visita");
 		lblCodigoVisita.setBounds(10, 10, 86, 20);
 		panelDadosAgendamento.add(lblCodigoVisita);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(510, 11, 555, 240);
+		add(panel_1);
+		panel_1.setLayout(null);
+		
+		graficoDepoisDeletar g = new graficoDepoisDeletar();
+		panel_1.add(g);
 
 		carregaTabela();
 
 	}
 
 	private void carregaTabela() {
-
 		model.removeTudo();
 		List<?> lista = banco.listarObjetos(Visita.class, "dataAgendamento");
 		for (int i = 0; i < lista.size(); i++) {
@@ -336,11 +343,11 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 	}
 
 	private void buscarCaptacao() {
-		JFrmListaCaptacao capt = new JFrmListaCaptacao("Escolher");
+		JFrmListaInteressado capt = new JFrmListaInteressado("Escolher");
 		capt.setModal(true);
 		capt.setVisible(true);
 
-		Captacao p = (Captacao) capt.getObj();
+		Interessado p = (Interessado) capt.getObj();
 		txtIdCaptacao.setText(String.valueOf(p.getId()));
 		txtNomeCaptacao.setText(String.valueOf(p.getNome()));
 		capt.dispose();
@@ -376,7 +383,7 @@ public class JPnlAgenda extends JPanel implements ActionListener {
 
 		visita.setImovel(imovel);
 
-		Captacao captacao = (Captacao) banco.buscarPorId(Captacao.class,
+		Interessado captacao = (Interessado) banco.buscarPorId(Interessado.class,
 				Integer.parseInt(txtIdCaptacao.getText()));
 
 		visita.setCaptacao(captacao);
